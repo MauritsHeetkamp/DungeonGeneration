@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 717319457955224941}
   - component: {fileID: 7141137167693016871}
   m_Layer: 0
-  m_Name: RightDoor
+  m_Name: UpDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,7 +105,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerRoom: {fileID: 5062535999709671150}
-  direction: 2
+  childRoom: {fileID: 0}
+  direction: 3
 --- !u!1 &1932854861332448894
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,7 +121,7 @@ GameObject:
   - component: {fileID: 4709326709434320748}
   - component: {fileID: 8131226303706243809}
   m_Layer: 0
-  m_Name: LeftDoor
+  m_Name: DownDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -211,7 +212,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerRoom: {fileID: 5062535999709671150}
-  direction: 0
+  childRoom: {fileID: 0}
+  direction: 1
 --- !u!1 &2679306833880538708
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,7 +228,7 @@ GameObject:
   - component: {fileID: 1923101590606283728}
   - component: {fileID: 4403916055975041936}
   m_Layer: 0
-  m_Name: UpDoor
+  m_Name: LeftDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -317,7 +319,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerRoom: {fileID: 5062535999709671150}
-  direction: 3
+  childRoom: {fileID: 0}
+  direction: 0
 --- !u!1 &5891858413010673463
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +334,8 @@ GameObject:
   - component: {fileID: 5891858413010673461}
   - component: {fileID: 5062535999709671150}
   - component: {fileID: 8559815906879696689}
-  m_Layer: 0
+  - component: {fileID: 3207767373589588823}
+  m_Layer: 4
   m_Name: StartRoomAll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,11 +423,7 @@ MonoBehaviour:
   - {fileID: 1932854861332448894}
   - {fileID: 7667406563016433507}
   - {fileID: 2679306833880538708}
-  allDoors:
-  - {fileID: 1231385462617824984}
-  - {fileID: 1932854861332448894}
-  - {fileID: 7667406563016433507}
-  - {fileID: 2679306833880538708}
+  entranceDoor: {fileID: 0}
   type: 0
 --- !u!65 &8559815906879696689
 BoxCollider:
@@ -436,8 +436,24 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 2.220446e-16, z: 10}
+  m_Size: {x: 9.99, y: 2.220446e-16, z: 9.99}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &3207767373589588823
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5891858413010673463}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7667406563016433507
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,7 +468,7 @@ GameObject:
   - component: {fileID: 8948284341579555493}
   - component: {fileID: 8571899733012925661}
   m_Layer: 0
-  m_Name: DownDoor
+  m_Name: RightDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -543,4 +559,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerRoom: {fileID: 5062535999709671150}
-  direction: 1
+  childRoom: {fileID: 0}
+  direction: 2

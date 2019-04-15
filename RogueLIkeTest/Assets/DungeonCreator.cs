@@ -13,11 +13,12 @@ public class DungeonCreator : MonoBehaviour
     public bool removePreviousDungeon;
 
     [Header("Room Data")]
-    public GameObject[] startRooms;
-    public GameObject[] leftRooms;
-    public GameObject[] rightRooms;
-    public GameObject[] upRooms;
-    public GameObject[] downRooms;
+    public List<GameObject> startRooms;
+    public List<GameObject> leftRooms;
+    public List<GameObject> rightRooms;
+    public List<GameObject> upRooms;
+    public List<GameObject> downRooms;
+    public LayerMask roomLayer;
 
     public int openProcesses;
     public List<GameObject> endRooms;
@@ -31,13 +32,13 @@ public class DungeonCreator : MonoBehaviour
         {
             ClearDungeon();
         }
-        entireDungeon.Add(Instantiate(startRooms[Random.Range(0, startRooms.Length)]));
+        entireDungeon.Add(Instantiate(startRooms[Random.Range(0, startRooms.Count)]));
         entireDungeon[entireDungeon.Count - 1].GetComponent<DungeonRoom>().Initialize(this);
-        entireDungeon[entireDungeon.Count - 1].GetComponent<DungeonRoom>().SpawnNextRoom();
-        CheckAmount();
+        StartCoroutine(entireDungeon[entireDungeon.Count - 1].GetComponent<DungeonRoom>().SpawnNextRoom());
     }
     public void ClearDungeon()
     {
+        openProcesses = 0;
         foreach (GameObject dungeonPart in entireDungeon) /// Destroys the current dungeon if removePreviousDungeon is true;
         {
             DestroyImmediate(dungeonPart);
@@ -45,7 +46,7 @@ public class DungeonCreator : MonoBehaviour
         entireDungeon = new List<GameObject>();
         endRooms = new List<GameObject>();
     }
-    public void SpawnBasicRoom(GameObject thisRoom, Transform doorPoint, DungeonDoor.DoorDirection requiredDirection)
+    public void SpawnRandomRoom(GameObject thisRoom, Transform doorPoint, DungeonDoor.DoorDirection requiredDirection, bool roomContinueGeneration = true)
     {
         if(entireDungeon.Count < maxRooms)
         {
@@ -53,25 +54,24 @@ public class DungeonCreator : MonoBehaviour
             switch (requiredDirection)
             {
                 case DungeonDoor.DoorDirection.Up:
-                    spawnedRoom = upRooms[Random.Range(0, upRooms.Length)];
+                    spawnedRoom = upRooms[Random.Range(0, upRooms.Count)];
                     break;
 
                 case DungeonDoor.DoorDirection.Down:
-                    spawnedRoom = downRooms[Random.Range(0, downRooms.Length)];
+                    spawnedRoom = downRooms[Random.Range(0, downRooms.Count)];
                     break;
 
                 case DungeonDoor.DoorDirection.Left:
-                    spawnedRoom = leftRooms[Random.Range(0, leftRooms.Length)];
+                    spawnedRoom = leftRooms[Random.Range(0, leftRooms.Count)];
                     break;
 
                 case DungeonDoor.DoorDirection.Right:
-                    spawnedRoom = rightRooms[Random.Range(0, rightRooms.Length)];
+                    spawnedRoom = rightRooms[Random.Range(0, rightRooms.Count)];
                     break;
 
             }
             spawnedRoom = Instantiate(spawnedRoom, Vector3.zero, Quaternion.identity);
             entireDungeon.Add(spawnedRoom);
-            spawnedRoom.GetComponent<DungeonRoom>().Initialize(this);
 
             List<Transform> availableDoors = new List<Transform>();
             for(int i = 0; i < spawnedRoom.GetComponent<DungeonRoom>().availableDoors.Count; i++)
@@ -87,29 +87,37 @@ public class DungeonCreator : MonoBehaviour
             selectedDoorPosition.y = 0;
             Vector3 requiredPosition = doorPoint.position - selectedDoorPosition;
             spawnedRoom.transform.position = requiredPosition;
-            spawnedRoom.GetComponent<DungeonRoom>().availableDoors.Remove(selectedDoor.gameObject);
-            spawnedRoom.GetComponent<DungeonRoom>().SpawnNextRoom();
+            spawnedRoom.transform.SetParent(thisRoom.transform);
+            doorPoint.gameObject.GetComponent<DungeonDoor>().childRoom = spawnedRoom.transform;
+            spawnedRoom.GetComponent<DungeonRoom>().Initialize(this, selectedDoor.gameObject);
+            if (roomContinueGeneration)
+            {
+                StartCoroutine(spawnedRoom.GetComponent<DungeonRoom>().SpawnNextRoom());
+                if(openProcesses <= 0)
+                {
+                    CheckAmount();
+                }
+            }
         }
     }
+
     public void CheckAmount()
     {
         if(entireDungeon.Count < minRooms)
         {
-            print(endRooms.Count.ToString() + " endrooms found");
+            //print(endRooms.Count.ToString() + " endrooms found");
             ProceedGeneration();
             return;
         }
-        print("FINISHED GENERATION");
+        //print("FINISHED GENERATION");
     }
     public void ProceedGeneration() // Makes sure the generation goes on when there aren't enough rooms
     {
         GameObject roomToChange = endRooms[Random.Range(0, endRooms.Count)];
-        endRooms.Remove(roomToChange);
+        endRooms.Remove(roomToChange);;
         entireDungeon.Remove(roomToChange);
 
-        SpawnBasicRoom(roomToChange, roomToChange.GetComponent<DungeonRoom>().allDoors[0].transform, roomToChange.GetComponent<DungeonRoom>().allDoors[0].GetComponent<DungeonDoor>().direction);
+        SpawnRandomRoom(roomToChange.transform.parent.gameObject, roomToChange.GetComponent<DungeonRoom>().entranceDoor.transform, roomToChange.GetComponent<DungeonRoom>().entranceDoor.GetComponent<DungeonDoor>().direction);
         DestroyImmediate(roomToChange);
-
-        CheckAmount();
     }
 }

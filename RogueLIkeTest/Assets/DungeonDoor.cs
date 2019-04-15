@@ -5,6 +5,7 @@ using UnityEngine;
 public class DungeonDoor : MonoBehaviour
 {
     public DungeonRoom ownerRoom;
+    public Transform childRoom;
     public DoorDirection direction;
 
 
