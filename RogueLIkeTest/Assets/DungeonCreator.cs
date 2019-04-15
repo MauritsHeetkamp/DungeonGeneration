@@ -120,4 +120,64 @@ public class DungeonCreator : MonoBehaviour
         SpawnRandomRoom(roomToChange.transform.parent.gameObject, roomToChange.GetComponent<DungeonRoom>().entranceDoor.transform, roomToChange.GetComponent<DungeonRoom>().entranceDoor.GetComponent<DungeonDoor>().direction);
         DestroyImmediate(roomToChange);
     }
+    public void ReplaceRoom(GameObject roomToReplace, DungeonDoor.DoorDirection entranceDirection)
+    {
+        entireDungeon.Remove(roomToReplace);
+        if (endRooms.Contains(roomToReplace))
+        {
+            endRooms.Remove(roomToReplace);
+        }
+        List<GameObject> availableOptions = new List<GameObject>();
+        switch (entranceDirection)
+        {
+            case DungeonDoor.DoorDirection.Up:
+                availableOptions = upRooms;
+                break;
+            case DungeonDoor.DoorDirection.Down:
+                availableOptions = downRooms;
+                break;
+            case DungeonDoor.DoorDirection.Left:
+                availableOptions = leftRooms;
+                break;
+            case DungeonDoor.DoorDirection.Right:
+                availableOptions = rightRooms;
+                break;
+        }
+        GameObject finalRoom = null;
+        GameObject entranceDoor = null;
+        foreach(GameObject option in availableOptions)
+        {
+            finalRoom = Instantiate(option);
+            List<GameObject> availableDoors = new List<GameObject>();
+            foreach(GameObject door in finalRoom.GetComponent<DungeonRoom>().availableDoors)
+            {
+                if(door.GetComponent<DungeonDoor>().direction == entranceDirection)
+                {
+                    availableDoors.Add(door);
+                }
+            }
+            entranceDoor = availableDoors[Random.Range(0, availableDoors.Count)];
+            finalRoom.transform.position = roomToReplace.GetComponent<DungeonRoom>().entranceDoor.transform.position - entranceDoor.transform.localPosition;
+            if(Physics.CheckBox(finalRoom.transform.position, finalRoom.GetComponent<BoxCollider>().size / 2, finalRoom.transform.rotation, roomLayer, QueryTriggerInteraction.Ignore))
+            {
+                Destroy(finalRoom);
+                continue;
+            }
+            else
+            {
+                break;
+            }
+        }
+        if (finalRoom)
+        {
+            print("FINAL ROOM HAS BEEN FOUND");
+            entireDungeon.Add(finalRoom);
+            finalRoom.GetComponent<DungeonRoom>().Initialize(this, entranceDoor);
+            DestroyImmediate(roomToReplace);
+        }
+        else
+        {
+            print("NO FINAL ROOM FOUND");
+        }
+    }
 }
