@@ -194,7 +194,7 @@ public class DungeonCreator : MonoBehaviour
         }
         else
         {
-            endRooms.Add(roomToReplace);
+            endRooms.Add(roomToReplace.transform.parent.gameObject);
             print(endRooms.Count);
             DestroyImmediate(roomToReplace);
             if (openProcesses <= 0)
