@@ -28,7 +28,6 @@ public class DungeonRoom : MonoBehaviour
     {
         if(availableDoors.Count > 0)
         {
-            print("ADDED PROCESS");
             creator.openProcesses++;
             yield return null;
             creator.openProcesses--;
@@ -53,14 +52,14 @@ public class DungeonRoom : MonoBehaviour
                         wantedDoorDirection = DungeonDoor.DoorDirection.Left;
                         break;
                 }
-                print("REMOVED PROCESS");
                 creator.SpawnRandomRoom(gameObject, availableDoors[i].transform, wantedDoorDirection);
             }
         }
     }
     public bool HasCollision()
     {
-        return Physics.CheckBox(transform.position, transform.GetComponent<BoxCollider>().size / 2, transform.rotation, creator.roomLayer);
+        bool returnValue = Physics.CheckBox(transform.position, transform.GetComponent<BoxCollider>().size / 2, transform.rotation, creator.roomLayer);
+        return returnValue;
     }
     public enum RoomTypes { Normal, End}
 }

@@ -24,6 +24,9 @@ public class DungeonCreator : MonoBehaviour
     public List<GameObject> endRooms;
     public List<GameObject> entireDungeon;
 
+    [Header("TEST PUPROSES")]
+    public GameObject ogRoom;
+    public GameObject hitsThisObject;
 
     // Generates the dungeon
     public void GenerateDungeon() 
@@ -46,7 +49,7 @@ public class DungeonCreator : MonoBehaviour
         entireDungeon = new List<GameObject>();
         endRooms = new List<GameObject>();
     }
-    public void SpawnRandomRoom(GameObject thisRoom, Transform doorPoint, DungeonDoor.DoorDirection requiredDirection, bool roomContinueGeneration = true)
+    public void SpawnRandomRoom(GameObject thisRoom, Transform doorPoint, DungeonDoor.DoorDirection requiredDirection)
     {
         if(entireDungeon.Count < maxRooms)
         {
@@ -90,38 +93,51 @@ public class DungeonCreator : MonoBehaviour
             spawnedRoom.transform.SetParent(thisRoom.transform);
             doorPoint.gameObject.GetComponent<DungeonDoor>().childRoom = spawnedRoom.transform;
             spawnedRoom.GetComponent<DungeonRoom>().Initialize(this, selectedDoor.gameObject);
-            if (roomContinueGeneration)
+            StartCoroutine(spawnedRoom.GetComponent<DungeonRoom>().SpawnNextRoom());
+            if (openProcesses <= 0)
+            {
+                CheckRoomCount();
+            }
+            /*if (spawnedRoom.GetComponent<DungeonRoom>().HasCollision())
+            {
+                ReplaceRoom(spawnedRoom, selectedDoor.GetComponent<DungeonDoor>().direction);
+            }
+            else
             {
                 StartCoroutine(spawnedRoom.GetComponent<DungeonRoom>().SpawnNextRoom());
-                if(openProcesses <= 0)
+                if (openProcesses <= 0)
                 {
-                    CheckAmount();
+                    print("GONNA CHECK");
+                    CheckRoomCount();
                 }
-            }
+            }*/
         }
     }
-
-    public void CheckAmount()
+    public void CheckRoomCount()
     {
         if(entireDungeon.Count < minRooms)
         {
-            //print(endRooms.Count.ToString() + " endrooms found");
             ProceedGeneration();
-            return;
         }
-        //print("FINISHED GENERATION");
     }
-    public void ProceedGeneration() // Makes sure the generation goes on when there aren't enough rooms
-    {
-        GameObject roomToChange = endRooms[Random.Range(0, endRooms.Count)];
-        endRooms.Remove(roomToChange);;
-        entireDungeon.Remove(roomToChange);
 
-        SpawnRandomRoom(roomToChange.transform.parent.gameObject, roomToChange.GetComponent<DungeonRoom>().entranceDoor.transform, roomToChange.GetComponent<DungeonRoom>().entranceDoor.GetComponent<DungeonDoor>().direction);
-        DestroyImmediate(roomToChange);
+    public void ProceedGeneration()
+    {
+        if(endRooms.Count > 0)
+        {
+            GameObject roomToReplace = endRooms[Random.Range(0, endRooms.Count)];
+            endRooms.Remove(roomToReplace);
+            entireDungeon.Remove(roomToReplace);
+
+            SpawnRandomRoom(roomToReplace.transform.parent.gameObject, roomToReplace.GetComponent<DungeonRoom>().entranceDoor.transform, roomToReplace.GetComponent<DungeonRoom>().entranceDoor.GetComponent<DungeonDoor>().direction);
+
+            DestroyImmediate(roomToReplace);
+        }
     }
+
     public void ReplaceRoom(GameObject roomToReplace, DungeonDoor.DoorDirection entranceDirection)
     {
+        ogRoom = roomToReplace;
         entireDungeon.Remove(roomToReplace);
         if (endRooms.Contains(roomToReplace))
         {
@@ -158,26 +174,37 @@ public class DungeonCreator : MonoBehaviour
             }
             entranceDoor = availableDoors[Random.Range(0, availableDoors.Count)];
             finalRoom.transform.position = roomToReplace.GetComponent<DungeonRoom>().entranceDoor.transform.position - entranceDoor.transform.localPosition;
-            if(Physics.CheckBox(finalRoom.transform.position, finalRoom.GetComponent<BoxCollider>().size / 2, finalRoom.transform.rotation, roomLayer, QueryTriggerInteraction.Ignore))
+            finalRoom.GetComponent<DungeonRoom>().Initialize(this, entranceDoor);
+            if (finalRoom.GetComponent<DungeonRoom>().HasCollision())
             {
+                if (endRooms.Contains(finalRoom))
+                {
+                    endRooms.Remove(finalRoom);
+                }
                 Destroy(finalRoom);
+                finalRoom = null;
                 continue;
             }
             else
             {
+                //print("THIS ONE DID NOT COLLIDE C:");
                 break;
             }
         }
-        if (finalRoom)
+        if (finalRoom != null)
         {
-            print("FINAL ROOM HAS BEEN FOUND");
             entireDungeon.Add(finalRoom);
-            finalRoom.GetComponent<DungeonRoom>().Initialize(this, entranceDoor);
+            finalRoom.transform.SetParent(roomToReplace.transform.parent);
             DestroyImmediate(roomToReplace);
+            StartCoroutine(finalRoom.GetComponent<DungeonRoom>().SpawnNextRoom());
         }
         else
         {
-            print("NO FINAL ROOM FOUND");
+            DestroyImmediate(roomToReplace);
+            if(openProcesses <= 0)
+            {
+
+            }
         }
     }
 }
