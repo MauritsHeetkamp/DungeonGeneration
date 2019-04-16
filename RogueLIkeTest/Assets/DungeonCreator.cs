@@ -93,12 +93,7 @@ public class DungeonCreator : MonoBehaviour
             spawnedRoom.transform.SetParent(thisRoom.transform);
             doorPoint.gameObject.GetComponent<DungeonDoor>().childRoom = spawnedRoom.transform;
             spawnedRoom.GetComponent<DungeonRoom>().Initialize(this, selectedDoor.gameObject);
-            StartCoroutine(spawnedRoom.GetComponent<DungeonRoom>().SpawnNextRoom());
-            if (openProcesses <= 0)
-            {
-                CheckRoomCount();
-            }
-            /*if (spawnedRoom.GetComponent<DungeonRoom>().HasCollision())
+            if (spawnedRoom.GetComponent<DungeonRoom>().HasCollision())
             {
                 ReplaceRoom(spawnedRoom, selectedDoor.GetComponent<DungeonDoor>().direction);
             }
@@ -107,10 +102,9 @@ public class DungeonCreator : MonoBehaviour
                 StartCoroutine(spawnedRoom.GetComponent<DungeonRoom>().SpawnNextRoom());
                 if (openProcesses <= 0)
                 {
-                    print("GONNA CHECK");
                     CheckRoomCount();
                 }
-            }*/
+            }
         }
     }
     public void CheckRoomCount()
@@ -128,7 +122,7 @@ public class DungeonCreator : MonoBehaviour
             GameObject roomToReplace = endRooms[Random.Range(0, endRooms.Count)];
             endRooms.Remove(roomToReplace);
             entireDungeon.Remove(roomToReplace);
-
+            print(roomToReplace);
             SpawnRandomRoom(roomToReplace.transform.parent.gameObject, roomToReplace.GetComponent<DungeonRoom>().entranceDoor.transform, roomToReplace.GetComponent<DungeonRoom>().entranceDoor.GetComponent<DungeonDoor>().direction);
 
             DestroyImmediate(roomToReplace);
@@ -137,7 +131,6 @@ public class DungeonCreator : MonoBehaviour
 
     public void ReplaceRoom(GameObject roomToReplace, DungeonDoor.DoorDirection entranceDirection)
     {
-        ogRoom = roomToReplace;
         entireDungeon.Remove(roomToReplace);
         if (endRooms.Contains(roomToReplace))
         {
@@ -193,6 +186,7 @@ public class DungeonCreator : MonoBehaviour
         }
         if (finalRoom != null)
         {
+            print("FINAL ROOM FOUND");
             entireDungeon.Add(finalRoom);
             finalRoom.transform.SetParent(roomToReplace.transform.parent);
             DestroyImmediate(roomToReplace);
@@ -200,10 +194,12 @@ public class DungeonCreator : MonoBehaviour
         }
         else
         {
+            endRooms.Add(roomToReplace);
+            print(endRooms.Count);
             DestroyImmediate(roomToReplace);
-            if(openProcesses <= 0)
+            if (openProcesses <= 0)
             {
-
+                CheckRoomCount();
             }
         }
     }
