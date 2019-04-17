@@ -350,6 +350,11 @@ MonoBehaviour:
   - {fileID: 5571656939198026873, guid: 6de640d6bfd886a4d8724b4b67eb2ab2, type: 3}
   - {fileID: 463378179310209854, guid: 552d9cefdaa8d1e48a0b58d53873cd4d, type: 3}
   - {fileID: 8646978982062712414, guid: 35271cc228f9cf8459a201f48a33b411, type: 3}
+  smallEndRooms:
+  - {fileID: 2643152105661984949, guid: 8b3beb95f22b8504dbcb949839428920, type: 3}
+  - {fileID: 2002037697582845165, guid: 6abaa1f4b7bb03941bc9a05fcd2c65c6, type: 3}
+  - {fileID: 2002037697582845165, guid: 1afbae17e3c650e488e3efd28a8898d9, type: 3}
+  - {fileID: 2002037697582845165, guid: b189b801e5ac61542a6b4e07911e2988, type: 3}
   roomLayer:
     serializedVersion: 2
     m_Bits: 16
@@ -358,6 +363,7 @@ MonoBehaviour:
   entireDungeon: []
   ogRoom: {fileID: 0}
   hitsThisObject: {fileID: 0}
+  endRoomColor: {fileID: 0}
 --- !u!4 &1995347975
 Transform:
   m_ObjectHideFlags: 0

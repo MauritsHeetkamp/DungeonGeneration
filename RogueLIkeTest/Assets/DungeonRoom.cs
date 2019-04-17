@@ -24,7 +24,7 @@ public class DungeonRoom : MonoBehaviour
             creator.endRooms.Add(gameObject);
         }
     }
-    public IEnumerator SpawnNextRoom()
+    public IEnumerator SpawnNextRoom(bool yes = false)
     {
         if(availableDoors.Count > 0)
         {
@@ -52,7 +52,7 @@ public class DungeonRoom : MonoBehaviour
                         wantedDoorDirection = DungeonDoor.DoorDirection.Left;
                         break;
                 }
-                creator.SpawnRandomRoom(gameObject, availableDoors[i].transform, wantedDoorDirection);
+                creator.SpawnRandomRoom(gameObject, availableDoors[i].transform, wantedDoorDirection, yes);
             }
         }
     }
