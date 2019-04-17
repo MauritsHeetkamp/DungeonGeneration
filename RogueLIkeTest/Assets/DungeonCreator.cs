@@ -136,8 +136,12 @@ public class DungeonCreator : MonoBehaviour
     }
     public void ReplaceWithSmallEndRoom(GameObject roomToReplace, DungeonDoor.DoorDirection entranceDirection)
     {
-        print("REPLACING");
         entireDungeon.Remove(roomToReplace);
+        if (endRooms.Contains(roomToReplace))
+        {
+            print("Yes");
+            endRooms.Remove(roomToReplace);
+        }
         List<GameObject> availableEndRooms = new List<GameObject>();
         for(int i = 0; i < smallEndRooms.Count; i++)
         {
@@ -152,9 +156,10 @@ public class DungeonCreator : MonoBehaviour
         newRoom.GetComponent<DungeonRoom>().Initialize(this, newRoom.GetComponent<DungeonRoom>().availableDoors[0]);
         newRoom.transform.position = roomToReplace.GetComponent<DungeonRoom>().entranceDoor.transform.position - newRoom.GetComponent<DungeonRoom>().entranceDoor.transform.localPosition;
         newRoom.transform.SetParent(roomToReplace.transform.parent);
-        newRoom.GetComponent<MeshRenderer>().material = endRoomColor;
+        //newRoom.GetComponent<MeshRenderer>().material = endRoomColor;
         entireDungeon.Add(newRoom);
         roomToReplace.GetComponent<BoxCollider>().enabled = false;
+        Destroy(roomToReplace);
 
     }
     public void ReplaceRoom(GameObject roomToReplace, DungeonDoor.DoorDirection entranceDirection)
@@ -222,8 +227,8 @@ public class DungeonCreator : MonoBehaviour
         else
         {
             roomToReplace.GetComponent<MeshRenderer>().material = endRoomColor;
-            print(roomToReplace.transform.parent.gameObject);
             ReplaceWithSmallEndRoom(roomToReplace.transform.parent.gameObject, roomToReplace.transform.parent.GetComponent<DungeonRoom>().entranceDoor.GetComponent<DungeonDoor>().direction);
+            Destroy(roomToReplace);
             if (openProcesses <= 0)
             {
                 CheckRoomCount();
