@@ -31,6 +31,14 @@ public class DungeonCreator : MonoBehaviour
 
     public Material endRoomColor;
 
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            GenerateDungeon();
+        }
+    }
     // Generates the dungeon
     public void GenerateDungeon() 
     {
