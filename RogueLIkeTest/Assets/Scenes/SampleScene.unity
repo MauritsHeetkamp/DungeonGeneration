@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minRooms: 20
-  maxRooms: 30
+  maxRooms: 50
   shopRooms: 0
   bossRooms: 0
   removePreviousDungeon: 1

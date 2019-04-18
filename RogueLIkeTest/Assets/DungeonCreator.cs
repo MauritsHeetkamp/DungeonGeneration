@@ -128,6 +128,10 @@ public class DungeonCreator : MonoBehaviour
         {
             ProceedGeneration();
         }
+        else
+        {
+            GenerateDungeon();
+        }
     }
 
     public void ProceedGeneration()
@@ -140,6 +144,10 @@ public class DungeonCreator : MonoBehaviour
             roomToReplace.GetComponent<BoxCollider>().enabled = false;
             SpawnRandomRoom(roomToReplace.transform.parent.gameObject, roomToReplace.GetComponent<DungeonRoom>().entranceDoor.transform, roomToReplace.GetComponent<DungeonRoom>().entranceDoor.GetComponent<DungeonDoor>().direction, true);
             Destroy(roomToReplace);
+        }
+        else
+        {
+            GenerateDungeon();
         }
     }
     public void ReplaceWithSmallEndRoom(GameObject roomToReplace, DungeonDoor.DoorDirection entranceDirection)
@@ -235,6 +243,8 @@ public class DungeonCreator : MonoBehaviour
         else
         {
             roomToReplace.GetComponent<MeshRenderer>().material = endRoomColor;
+            print(roomToReplace + " WILL BE DESTROYED");
+            print(roomToReplace.transform.parent.gameObject + " IS THE ROOM THAT SHOULD BE REPLACED");
             ReplaceWithSmallEndRoom(roomToReplace.transform.parent.gameObject, roomToReplace.transform.parent.GetComponent<DungeonRoom>().entranceDoor.GetComponent<DungeonDoor>().direction);
             Destroy(roomToReplace);
             if (openProcesses <= 0)
