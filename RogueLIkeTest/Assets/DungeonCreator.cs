@@ -142,6 +142,7 @@ public class DungeonCreator : MonoBehaviour
             endRooms.Remove(roomToReplace);
             entireDungeon.Remove(roomToReplace);
             roomToReplace.GetComponent<BoxCollider>().enabled = false;
+            roomToReplace.GetComponent<MeshRenderer>().material = endRoomColor;
             SpawnRandomRoom(roomToReplace.transform.parent.gameObject, roomToReplace.GetComponent<DungeonRoom>().entranceDoor.transform, roomToReplace.GetComponent<DungeonRoom>().entranceDoor.GetComponent<DungeonDoor>().direction, true);
             Destroy(roomToReplace);
         }
@@ -243,6 +244,8 @@ public class DungeonCreator : MonoBehaviour
         else
         {
             roomToReplace.GetComponent<MeshRenderer>().material = endRoomColor;
+            ogRoom = roomToReplace;
+            hitsThisObject = roomToReplace.transform.parent.gameObject;
             print(roomToReplace + " WILL BE DESTROYED");
             print(roomToReplace.transform.parent.gameObject + " IS THE ROOM THAT SHOULD BE REPLACED");
             ReplaceWithSmallEndRoom(roomToReplace.transform.parent.gameObject, roomToReplace.transform.parent.GetComponent<DungeonRoom>().entranceDoor.GetComponent<DungeonDoor>().direction);
