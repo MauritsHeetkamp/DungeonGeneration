@@ -6,11 +6,21 @@ using UnityEditor;
 [ExecuteInEditMode]
 public class DungeonRoom : MonoBehaviour
 {
+    public GameObject parentDoor;
+
+
+
+
     public DungeonCreator creator;
     public List<GameObject> availableDoors;
     public GameObject entranceDoor;
     public RoomTypes type;
 
+
+    public void Awake()
+    {
+        print(" Spawned " + gameObject);
+    }
     public void Initialize(DungeonCreator owner, GameObject entrance = null)
     {
         creator = owner;
@@ -59,6 +69,10 @@ public class DungeonRoom : MonoBehaviour
     public bool HasCollision()
     {
         bool returnValue = Physics.CheckBox(transform.position, transform.GetComponent<BoxCollider>().size / 2, transform.rotation, creator.roomLayer);
+        if (returnValue)
+        {
+            print(gameObject + " HAS COLLIDED");
+        }
         return returnValue;
     }
     public enum RoomTypes { Normal, End}
