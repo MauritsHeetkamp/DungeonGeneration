@@ -106,6 +106,7 @@ public class DungeonCreator : MonoBehaviour
             Vector3 requiredPosition = doorPoint.position - selectedDoorPosition;
             if (yes)
             {
+                spawnedRoom.GetComponent<DungeonRoom>().replaced = true;
                 //spawnedRoom.GetComponent<MeshRenderer>().material = endRoomColor;
             }
             spawnedRoom.transform.position = requiredPosition;
@@ -179,6 +180,7 @@ public class DungeonCreator : MonoBehaviour
         newRoom.GetComponent<DungeonRoom>().Initialize(this, newRoom.GetComponent<DungeonRoom>().availableDoors[0]);
         newRoom.transform.position = roomToReplace.GetComponent<DungeonRoom>().entranceDoor.transform.position - newRoom.GetComponent<DungeonRoom>().entranceDoor.transform.localPosition;
         newRoom.transform.SetParent(roomToReplace.transform.parent);
+        newRoom.GetComponent<DungeonRoom>().replaced = true;
         //newRoom.GetComponent<MeshRenderer>().material = endRoomColor;
         entireDungeon.Add(newRoom);
         roomToReplace.GetComponent<BoxCollider>().enabled = false;
@@ -245,7 +247,8 @@ public class DungeonCreator : MonoBehaviour
             entireDungeon.Add(finalRoom);
             finalRoom.transform.SetParent(roomToReplace.transform.parent);
             DestroyImmediate(roomToReplace);
-            StartCoroutine(finalRoom.GetComponent<DungeonRoom>().SpawnNextRoom(true));
+            finalRoom.GetComponent<DungeonRoom>().replaced = true;
+            StartCoroutine(finalRoom.GetComponent<DungeonRoom>().SpawnNextRoom());
         }
         else
         {

@@ -7,7 +7,7 @@ using UnityEditor;
 public class DungeonRoom : MonoBehaviour
 {
     public GameObject parentDoor;
-
+    public bool replaced;
 
 
 
