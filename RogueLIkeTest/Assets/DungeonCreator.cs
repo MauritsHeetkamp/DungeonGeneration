@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DungeonCreator : MonoBehaviour
 {
+    public Collider[] hits;
+
     public int dungeons;
     [Header("Generation Data")]
     public int minRooms;
@@ -106,7 +108,7 @@ public class DungeonCreator : MonoBehaviour
             Vector3 requiredPosition = doorPoint.position - selectedDoorPosition;
             if (yes)
             {
-                spawnedRoom.GetComponent<DungeonRoom>().replaced = true;
+                spawnedRoom.GetComponent<DungeonRoom>().previousReplaced = true;
                 //spawnedRoom.GetComponent<MeshRenderer>().material = endRoomColor;
             }
             spawnedRoom.transform.position = requiredPosition;
@@ -121,10 +123,6 @@ public class DungeonCreator : MonoBehaviour
             else
             {
                 StartCoroutine(spawnedRoom.GetComponent<DungeonRoom>().SpawnNextRoom());
-                if (openProcesses <= 0)
-                {
-                    CheckRoomCount();
-                }
             }
         }
     }
@@ -151,7 +149,7 @@ public class DungeonCreator : MonoBehaviour
             roomToReplace.GetComponent<MeshRenderer>().material = endRoomColor;
             print("REPLACING " + roomToReplace);
             SpawnRandomRoom(roomToReplace.transform.parent.gameObject, roomToReplace.GetComponent<DungeonRoom>().entranceDoor.transform, roomToReplace.GetComponent<DungeonRoom>().entranceDoor.GetComponent<DungeonDoor>().direction, true);
-            Destroy(roomToReplace);
+            DestroyImmediate(roomToReplace);
         }
         else
         {
@@ -184,11 +182,12 @@ public class DungeonCreator : MonoBehaviour
         //newRoom.GetComponent<MeshRenderer>().material = endRoomColor;
         entireDungeon.Add(newRoom);
         roomToReplace.GetComponent<BoxCollider>().enabled = false;
-        Destroy(roomToReplace);
+        DestroyImmediate(roomToReplace);
 
     }
     public void ReplaceRoom(GameObject roomToReplace, DungeonDoor.DoorDirection entranceDirection)
     {
+        roomToReplace.GetComponent<BoxCollider>().enabled = false;
         entireDungeon.Remove(roomToReplace);
         if (endRooms.Contains(roomToReplace))
         {
@@ -232,7 +231,7 @@ public class DungeonCreator : MonoBehaviour
                 {
                     endRooms.Remove(finalRoom);
                 }
-                Destroy(finalRoom);
+                DestroyImmediate(finalRoom);
                 finalRoom = null;
                 continue;
             }
@@ -244,6 +243,7 @@ public class DungeonCreator : MonoBehaviour
         }
         if (finalRoom != null)
         {
+            print("FOUND NEW ROOM");
             entireDungeon.Add(finalRoom);
             finalRoom.transform.SetParent(roomToReplace.transform.parent);
             DestroyImmediate(roomToReplace);
@@ -258,7 +258,7 @@ public class DungeonCreator : MonoBehaviour
             print(roomToReplace + " WILL BE DESTROYED");
             print(roomToReplace.transform.parent.gameObject + " IS THE ROOM THAT SHOULD BE REPLACED");
             ReplaceWithSmallEndRoom(roomToReplace.transform.parent.gameObject, roomToReplace.transform.parent.GetComponent<DungeonRoom>().entranceDoor.GetComponent<DungeonDoor>().direction);
-            Destroy(roomToReplace);
+            DestroyImmediate(roomToReplace);
             if (openProcesses <= 0)
             {
                 CheckRoomCount();

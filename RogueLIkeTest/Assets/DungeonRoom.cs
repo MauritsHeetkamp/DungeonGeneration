@@ -8,7 +8,7 @@ public class DungeonRoom : MonoBehaviour
 {
     public GameObject parentDoor;
     public bool replaced;
-
+    public bool previousReplaced;
 
 
     public DungeonCreator creator;
@@ -36,11 +36,11 @@ public class DungeonRoom : MonoBehaviour
     }
     public IEnumerator SpawnNextRoom(bool yes = false)
     {
+        creator.openProcesses++;
+        yield return null;
+        creator.openProcesses--;
         if(availableDoors.Count > 0)
         {
-            creator.openProcesses++;
-            yield return null;
-            creator.openProcesses--;
             for (int i = 0; i < availableDoors.Count; i++)
             {
                 DungeonDoor.DoorDirection wantedDoorDirection = DungeonDoor.DoorDirection.Left;
@@ -65,13 +65,25 @@ public class DungeonRoom : MonoBehaviour
                 creator.SpawnRandomRoom(gameObject, availableDoors[i].transform, wantedDoorDirection, yes);
             }
         }
+        else
+        {
+            if(creator.openProcesses <= 0)
+            {
+                creator.CheckRoomCount();
+            }
+        }
     }
     public bool HasCollision()
     {
         bool returnValue = Physics.CheckBox(transform.position, transform.GetComponent<BoxCollider>().size / 2, transform.rotation, creator.roomLayer);
         if (returnValue)
         {
-            print(gameObject + " HAS COLLIDED");
+            Collider[] hits = Physics.OverlapBox(transform.position, transform.GetComponent<BoxCollider>().size / 2, transform.rotation, creator.roomLayer);
+            creator.hits = hits;
+            foreach(Collider col in hits)
+            {
+                print(gameObject + " HAS COLLIDED WITH " + col.gameObject);
+            }
         }
         return returnValue;
     }
