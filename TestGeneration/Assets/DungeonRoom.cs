@@ -78,15 +78,10 @@ public class DungeonRoom : MonoBehaviour
     }
     public bool HasCollision()
     {
-        Vector3 colliderHalfExtends = transform.GetComponent<BoxCollider>().size;
-        colliderHalfExtends.x *= transform.localScale.x;
-        colliderHalfExtends.y *= transform.localScale.y;
-        colliderHalfExtends.z *= transform.localScale.z;
-        colliderHalfExtends /= 2;
-        bool returnValue = Physics.CheckBox(transform.position, colliderHalfExtends, transform.rotation);
+        bool returnValue = Physics.CheckBox(transform.position, transform.GetComponent<BoxCollider>().size / 2, transform.rotation);
         if (returnValue)
         {
-            Collider[] hits = Physics.OverlapBox(transform.position, colliderHalfExtends, transform.rotation);
+            Collider[] hits = Physics.OverlapBox(transform.position, transform.GetComponent<BoxCollider>().size / 2, transform.rotation);
             if(creator != null)
             {
                 creator.hits = hits;

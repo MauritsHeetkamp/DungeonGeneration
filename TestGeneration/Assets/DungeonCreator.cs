@@ -105,9 +105,9 @@ public class DungeonCreator : MonoBehaviour
                 }
             }
             Transform selectedDoor = availableDoors[Random.Range(0, availableDoors.Count)];
-            Vector3 selectedDoorPosition = selectedDoor.position;
+            Vector3 selectedDoorPosition = selectedDoor.localPosition;
             selectedDoorPosition.y = 0;
-            Vector3 requiredPosition = doorPoint - (selectedDoorPosition - spawnedRoom.transform.position);
+            Vector3 requiredPosition = doorPoint - selectedDoorPosition;
             if (yes)
             {
                 spawnedRoom.GetComponent<DungeonRoom>().previousReplaced = true;
@@ -116,14 +116,7 @@ public class DungeonCreator : MonoBehaviour
             spawnedRoom.transform.position = requiredPosition;
             spawnedRoom.transform.SetParent(thisRoom.transform);
             spawnedRoom.GetComponent<DungeonRoom>().Initialize(this, selectedDoor.gameObject);
-
-            Vector3 colliderHalfExtends = spawnedRoom.transform.GetComponent<BoxCollider>().size;
-            colliderHalfExtends.x *= spawnedRoom.transform.localScale.x;
-            colliderHalfExtends.y *= spawnedRoom.transform.localScale.y;
-            colliderHalfExtends.z *= spawnedRoom.transform.localScale.z;
-            colliderHalfExtends /= 2;
-
-            print("WITH " + Physics.OverlapBox(spawnedRoom.transform.position, colliderHalfExtends, spawnedRoom.transform.rotation).Length + " HITS AAA");
+            print("WITH " + Physics.OverlapBox(spawnedRoom.transform.position, spawnedRoom.GetComponent<BoxCollider>().size / 2, spawnedRoom.transform.rotation).Length + " HITS AAA");
             if (spawnedRoom.GetComponent<DungeonRoom>().HasCollision())
             {
                 print(spawnedRoom + " IS THE SPAWNED ROOM");
@@ -131,7 +124,7 @@ public class DungeonCreator : MonoBehaviour
             }
             else
             {
-                print("WITH " + Physics.OverlapBox(spawnedRoom.transform.position, colliderHalfExtends, spawnedRoom.transform.rotation).Length + " HITS");
+                print("WITH " + Physics.OverlapBox(spawnedRoom.transform.position, spawnedRoom.GetComponent<BoxCollider>().size / 2, spawnedRoom.transform.rotation).Length + " HITS");
                 StartCoroutine(spawnedRoom.GetComponent<DungeonRoom>().SpawnNextRoom());
             }
         }
@@ -193,7 +186,7 @@ public class DungeonCreator : MonoBehaviour
         }
         GameObject newRoom = Instantiate(availableEndRooms[Random.Range(0, availableEndRooms.Count)]);
         newRoom.GetComponent<DungeonRoom>().Initialize(this, newRoom.GetComponent<DungeonRoom>().availableDoors[0]);
-        newRoom.transform.position = backupPosition - (newRoom.GetComponent<DungeonRoom>().entranceDoor.transform.position - newRoom.transform.position);
+        newRoom.transform.position = backupPosition - newRoom.GetComponent<DungeonRoom>().entranceDoor.transform.localPosition;
         newRoom.transform.SetParent(backupParent.transform);
         newRoom.GetComponent<DungeonRoom>().replaced = true;
         //newRoom.GetComponent<MeshRenderer>().material = endRoomColor;
@@ -241,7 +234,7 @@ public class DungeonCreator : MonoBehaviour
                 }
             }
             entranceDoor = availableDoors[Random.Range(0, availableDoors.Count)];
-            finalRoom.transform.position = backupPos - (entranceDoor.transform.position - finalRoom.transform.position);
+            finalRoom.transform.position = backupPos - entranceDoor.transform.localPosition;
             finalRoom.GetComponent<DungeonRoom>().Initialize(this, entranceDoor);
             if (finalRoom.GetComponent<DungeonRoom>().HasCollision())
             {
