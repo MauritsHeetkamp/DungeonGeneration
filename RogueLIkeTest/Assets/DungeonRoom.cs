@@ -16,6 +16,7 @@ public class DungeonRoom : MonoBehaviour
     public GameObject entranceDoor;
     public RoomTypes type;
 
+    public GameObject[] possibleDoorLocations;
 
     public void Awake()
     {
@@ -35,9 +36,9 @@ public class DungeonRoom : MonoBehaviour
             creator.endRooms.Add(gameObject);
         }
     }
-    public IEnumerator SpawnNextRoom(bool yes = false)
+    public virtual IEnumerator SpawnNextRoom(bool yes = false)
     {
-                print(" Spawned " + gameObject);
+        print(" Spawned " + gameObject);
         creator.openProcesses++;
         yield return null;
         creator.openProcesses--;
@@ -65,7 +66,7 @@ public class DungeonRoom : MonoBehaviour
                         break;
                 }
                 print("OGSPAWN");
-                creator.SpawnRandomRoom(gameObject, availableDoors[i].transform.position, wantedDoorDirection, yes);
+                creator.SpawnRandomRoom(gameObject, availableDoors[i].transform, wantedDoorDirection, yes);
             }
         }
         else
@@ -98,5 +99,5 @@ public class DungeonRoom : MonoBehaviour
         }
         return returnValue;
     }
-    public enum RoomTypes { Normal, End}
+    public enum RoomTypes { Normal, End, Hallway}
 }

@@ -323,11 +323,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b6c87f19c2c86479601164f4f4b7b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hits: []
+  dungeons: 0
   minRooms: 20
   maxRooms: 50
   shopRooms: 0
   bossRooms: 0
   removePreviousDungeon: 1
+  walls:
+  - {fileID: 4410634415492265739, guid: 64ddf57c1116fc44faf087b3c4905271, type: 3}
+  doors: []
   startRooms:
   - {fileID: 5891858413010673463, guid: ef6b9471a937cae449b3247e17c8bfc6, type: 3}
   leftRooms:
@@ -335,26 +340,26 @@ MonoBehaviour:
   - {fileID: 2002037697582845165, guid: 6abaa1f4b7bb03941bc9a05fcd2c65c6, type: 3}
   - {fileID: 2002037697582845165, guid: 985921601bf909742bda592a0a4770b6, type: 3}
   - {fileID: 8351581659204503673, guid: b4a0bcf67fef2814581c5fda89b20ff4, type: 3}
+  - {fileID: 7615944803242056397, guid: 0013f26a8853f7241b8c7d608c575ed6, type: 3}
   rightRooms:
   - {fileID: 463378179310209854, guid: 552d9cefdaa8d1e48a0b58d53873cd4d, type: 3}
   - {fileID: 2002037697582845165, guid: 1afbae17e3c650e488e3efd28a8898d9, type: 3}
   - {fileID: 396176103741790588, guid: ca60b41983b15a24083baeb151bedfae, type: 3}
   - {fileID: 2002037697582845165, guid: 985921601bf909742bda592a0a4770b6, type: 3}
+  - {fileID: 148027031407266773, guid: 901406899276a9f4789bf9d5b7c693f5, type: 3}
   upRooms:
   - {fileID: 8351581659204503673, guid: b4a0bcf67fef2814581c5fda89b20ff4, type: 3}
   - {fileID: 396176103741790588, guid: ca60b41983b15a24083baeb151bedfae, type: 3}
   - {fileID: 8646978982062712414, guid: 35271cc228f9cf8459a201f48a33b411, type: 3}
   - {fileID: 2002037697582845165, guid: b189b801e5ac61542a6b4e07911e2988, type: 3}
   downRooms:
-  - {fileID: 2643152105661984949, guid: 8b3beb95f22b8504dbcb949839428920, type: 3}
+  - {fileID: 5732670273801590920, guid: 8b3beb95f22b8504dbcb949839428920, type: 3}
   - {fileID: 5571656939198026873, guid: 6de640d6bfd886a4d8724b4b67eb2ab2, type: 3}
   - {fileID: 463378179310209854, guid: 552d9cefdaa8d1e48a0b58d53873cd4d, type: 3}
   - {fileID: 8646978982062712414, guid: 35271cc228f9cf8459a201f48a33b411, type: 3}
-  smallEndRooms:
-  - {fileID: 2643152105661984949, guid: 8b3beb95f22b8504dbcb949839428920, type: 3}
-  - {fileID: 2002037697582845165, guid: 6abaa1f4b7bb03941bc9a05fcd2c65c6, type: 3}
-  - {fileID: 2002037697582845165, guid: 1afbae17e3c650e488e3efd28a8898d9, type: 3}
-  - {fileID: 2002037697582845165, guid: b189b801e5ac61542a6b4e07911e2988, type: 3}
+  - {fileID: 7615944803242056397, guid: 0013f26a8853f7241b8c7d608c575ed6, type: 3}
+  - {fileID: 148027031407266773, guid: 901406899276a9f4789bf9d5b7c693f5, type: 3}
+  hallways: []
   roomLayer:
     serializedVersion: 2
     m_Bits: 16
