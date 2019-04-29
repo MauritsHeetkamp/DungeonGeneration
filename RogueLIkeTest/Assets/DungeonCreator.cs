@@ -29,6 +29,7 @@ public class DungeonCreator : MonoBehaviour
     public LayerMask roomLayer;
 
     public int openProcesses;
+    public int roomCount;
     public List<GameObject> endRooms;
     public List<GameObject> entireDungeon;
 
@@ -64,6 +65,7 @@ public class DungeonCreator : MonoBehaviour
     }
     public void ClearDungeon()
     {
+        roomCount = 0;
         openProcesses = 0;
         foreach (GameObject dungeonPart in entireDungeon) /// Destroys the current dungeon if removePreviousDungeon is true;
         {
@@ -78,7 +80,7 @@ public class DungeonCreator : MonoBehaviour
     }
     public void SpawnRandomHallway(GameObject thisRoom, Transform doorPoint, DungeonDoor.DoorDirection requiredDirection)
     {
-        if (entireDungeon.Count < maxRooms)
+        if (roomCount <= maxRooms)
         {
             List<GameObject> availableHallways = new List<GameObject>();
             foreach(GameObject hallway in hallways)
@@ -95,9 +97,9 @@ public class DungeonCreator : MonoBehaviour
             SpawnDungeonPart(availableHallways[Random.Range(0, availableHallways.Count)], requiredDirection, thisRoom, doorPoint);
         }
     }
-    public void SpawnRandomRoom(GameObject thisRoom, Transform doorPoint, DungeonDoor.DoorDirection requiredDirection, bool yes = false)
+    public void SpawnRandomRoom(GameObject thisRoom, Transform doorPoint, DungeonDoor.DoorDirection requiredDirection)
     {
-        if(entireDungeon.Count < maxRooms)
+        if(roomCount <= maxRooms)
         {
             GameObject roomToSpawn = null;
             switch (requiredDirection)
@@ -124,37 +126,35 @@ public class DungeonCreator : MonoBehaviour
     }
     public void SpawnDungeonPart(GameObject roomToSpawn, DungeonDoor.DoorDirection requiredDirection, GameObject parentRoom, Transform doorPoint)
     {
-        GameObject spawnedRoom = Instantiate(roomToSpawn, Vector3.zero, Quaternion.identity);
-        entireDungeon.Add(spawnedRoom);
-
-        List<Transform> availableDoors = new List<Transform>();
-        for (int i = 0; i < spawnedRoom.GetComponent<DungeonRoom>().availableDoors.Count; i++)
+        if (roomCount < maxRooms)
         {
-            GameObject thisDoor = spawnedRoom.GetComponent<DungeonRoom>().availableDoors[i];
-            if (thisDoor.GetComponent<DungeonDoor>().direction == requiredDirection)
+            GameObject spawnedRoom = Instantiate(roomToSpawn, Vector3.zero, Quaternion.identity);
+            entireDungeon.Add(spawnedRoom);
+
+            List<Transform> availableDoors = new List<Transform>();
+            for (int i = 0; i < spawnedRoom.GetComponent<DungeonRoom>().availableDoors.Count; i++)
             {
-                availableDoors.Add(thisDoor.transform);
+                GameObject thisDoor = spawnedRoom.GetComponent<DungeonRoom>().availableDoors[i];
+                if (thisDoor.GetComponent<DungeonDoor>().direction == requiredDirection)
+                {
+                    availableDoors.Add(thisDoor.transform);
+                }
             }
+            Transform selectedDoor = availableDoors[Random.Range(0, availableDoors.Count)];
+
+            SetLocation(spawnedRoom.transform, selectedDoor, doorPoint);
+            spawnedRoom.transform.SetParent(parentRoom.transform);
+            spawnedRoom.GetComponent<DungeonRoom>().Initialize(this, selectedDoor.gameObject);
+            spawnedRoom.GetComponent<DungeonRoom>().entranceDoor.GetComponent<DungeonDoor>().parentDoor = doorPoint.gameObject;
+
+            CheckPartCollision(spawnedRoom, selectedDoor.GetComponent<DungeonDoor>().direction);
         }
-        Transform selectedDoor = availableDoors[Random.Range(0, availableDoors.Count)];
-
-        SetLocation(spawnedRoom.transform, selectedDoor, doorPoint);
-        spawnedRoom.transform.SetParent(parentRoom.transform);
-        spawnedRoom.GetComponent<DungeonRoom>().Initialize(this, selectedDoor.gameObject);
-        spawnedRoom.GetComponent<DungeonRoom>().entranceDoor.GetComponent<DungeonDoor>().parentDoor = doorPoint.gameObject;
-
-        CheckPartCollision(spawnedRoom, selectedDoor.GetComponent<DungeonDoor>().direction);
     }
     public void CheckPartCollision(GameObject roomToCheck, DungeonDoor.DoorDirection entranceDirection)
     {
-        Vector3 colliderHalfExtends = roomToCheck.transform.GetComponent<BoxCollider>().size;
-        colliderHalfExtends.x *= roomToCheck.transform.localScale.x;
-        colliderHalfExtends.y *= roomToCheck.transform.localScale.y;
-        colliderHalfExtends.z *= roomToCheck.transform.localScale.z;
-        colliderHalfExtends /= 2;
-
         if (roomToCheck.GetComponent<DungeonRoom>().HasCollision())
         {
+            print("HAD COLL");
             ReplaceRoom(roomToCheck, entranceDirection);
         }
         else
@@ -165,7 +165,7 @@ public class DungeonCreator : MonoBehaviour
     public IEnumerator CheckRoomCount()
     {
         yield return null;
-        if(entireDungeon.Count < minRooms)
+        if(roomCount < minRooms)
         {
             ProceedGeneration();
         }
@@ -188,7 +188,7 @@ public class DungeonCreator : MonoBehaviour
             print("DESTROYED " + roomToReplace);
             print("PROCEEDGEN - REPLACING " + roomToReplace);
             DestroyImmediate(roomToReplace);
-            SpawnRandomRoom(backupParent, backupTransform, backupDirection, true);
+            SpawnRandomRoom(backupParent, backupTransform, backupDirection);
         }
         else
         {
@@ -234,6 +234,7 @@ public class DungeonCreator : MonoBehaviour
     }
     public void ReplaceRoom(GameObject roomToReplace, DungeonDoor.DoorDirection entranceDirection)
     {
+        DungeonRoom.RoomTypes backupType = roomToReplace.GetComponent<DungeonRoom>().type;
         GameObject backupParentDoor = roomToReplace.GetComponent<DungeonRoom>().entranceDoor.GetComponent<DungeonDoor>().parentDoor;
         GameObject backupParent = roomToReplace.transform.parent.gameObject;
         entireDungeon.Remove(roomToReplace);
@@ -245,20 +246,37 @@ public class DungeonCreator : MonoBehaviour
         DestroyImmediate(roomToReplace);
 
         List<GameObject> availableOptions = new List<GameObject>();
-        switch (entranceDirection)
+        if(backupType == DungeonRoom.RoomTypes.Hallway)
         {
-            case DungeonDoor.DoorDirection.Up:
-                availableOptions = upRooms;
-                break;
-            case DungeonDoor.DoorDirection.Down:
-                availableOptions = downRooms;
-                break;
-            case DungeonDoor.DoorDirection.Left:
-                availableOptions = leftRooms;
-                break;
-            case DungeonDoor.DoorDirection.Right:
-                availableOptions = rightRooms;
-                break;
+            foreach (GameObject hallway in hallways)
+            {
+                foreach (GameObject door in hallway.GetComponent<DungeonRoom>().availableDoors)
+                {
+                    if (door.GetComponent<DungeonDoor>().direction == entranceDirection)
+                    {
+                        availableOptions.Add(hallway);
+                        break;
+                    }
+                }
+            }
+        }
+        else
+        {
+            switch (entranceDirection)
+            {
+                case DungeonDoor.DoorDirection.Up:
+                    availableOptions = upRooms;
+                    break;
+                case DungeonDoor.DoorDirection.Down:
+                    availableOptions = downRooms;
+                    break;
+                case DungeonDoor.DoorDirection.Left:
+                    availableOptions = leftRooms;
+                    break;
+                case DungeonDoor.DoorDirection.Right:
+                    availableOptions = rightRooms;
+                    break;
+            }
         }
         GameObject finalRoom = null;
         GameObject entranceDoor = null;

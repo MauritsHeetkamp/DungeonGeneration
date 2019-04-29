@@ -359,11 +359,14 @@ MonoBehaviour:
   - {fileID: 8646978982062712414, guid: 35271cc228f9cf8459a201f48a33b411, type: 3}
   - {fileID: 7615944803242056397, guid: 0013f26a8853f7241b8c7d608c575ed6, type: 3}
   - {fileID: 148027031407266773, guid: 901406899276a9f4789bf9d5b7c693f5, type: 3}
-  hallways: []
+  hallways:
+  - {fileID: 2351870015619051694, guid: 1ad38fd56de988d4981b555e5434a08c, type: 3}
+  - {fileID: 6518503444331407997, guid: 0571692009c795b4a80b564730b89e63, type: 3}
   roomLayer:
     serializedVersion: 2
     m_Bits: 16
   openProcesses: 0
+  roomCount: 0
   endRooms: []
   entireDungeon: []
   ogRoom: {fileID: 0}

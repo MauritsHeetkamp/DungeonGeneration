@@ -24,7 +24,6 @@ public class DungeonRoom : MonoBehaviour
     }
     public void Initialize(DungeonCreator owner, GameObject entrance = null)
     {
-        print(gameObject + "HAS COLLISION : " + HasCollision());
         creator = owner;
         if (entrance)
         {
@@ -36,9 +35,9 @@ public class DungeonRoom : MonoBehaviour
             creator.endRooms.Add(gameObject);
         }
     }
-    public virtual IEnumerator SpawnNextRoom(bool yes = false)
+    public virtual IEnumerator SpawnNextRoom()
     {
-        print(" Spawned " + gameObject);
+        creator.roomCount++;
         creator.openProcesses++;
         yield return null;
         creator.openProcesses--;
@@ -65,8 +64,20 @@ public class DungeonRoom : MonoBehaviour
                         wantedDoorDirection = DungeonDoor.DoorDirection.Left;
                         break;
                 }
-                print("OGSPAWN");
-                creator.SpawnRandomRoom(gameObject, availableDoors[i].transform, wantedDoorDirection, yes);
+
+                List<GameObject> availableHallways = new List<GameObject>();
+                foreach (GameObject hallway in creator.hallways)
+                {
+                    foreach (GameObject door in hallway.GetComponent<DungeonRoom>().availableDoors)
+                    {
+                        if (door.GetComponent<DungeonDoor>().direction == wantedDoorDirection)
+                        {
+                            availableHallways.Add(hallway);
+                            break;
+                        }
+                    }
+                }
+                creator.SpawnDungeonPart(availableHallways[Random.Range(0, availableHallways.Count)], wantedDoorDirection, gameObject, availableDoors[i].transform);
             }
         }
         else
@@ -80,9 +91,9 @@ public class DungeonRoom : MonoBehaviour
     public bool HasCollision()
     {
         Vector3 colliderHalfExtends = transform.GetComponent<BoxCollider>().size;
-        colliderHalfExtends.x *= transform.localScale.x;
-        colliderHalfExtends.y *= transform.localScale.y;
-        colliderHalfExtends.z *= transform.localScale.z;
+        colliderHalfExtends.x *= transform.lossyScale.x;
+        colliderHalfExtends.y *= transform.lossyScale.y;
+        colliderHalfExtends.z *= transform.lossyScale.z;
         colliderHalfExtends /= 2;
         bool returnValue = Physics.CheckBox(transform.position, colliderHalfExtends, transform.rotation);
         if (returnValue)
