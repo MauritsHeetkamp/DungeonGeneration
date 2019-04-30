@@ -39,7 +39,7 @@ public class DungeonRoom : MonoBehaviour
     {
         creator.roomCount++;
         creator.openProcesses++;
-        yield return null;
+        yield return new WaitForSeconds(0.5f);
         creator.openProcesses--;
         if(availableDoors.Count > 0)
         {
