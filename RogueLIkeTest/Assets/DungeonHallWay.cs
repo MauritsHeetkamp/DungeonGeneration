@@ -54,7 +54,7 @@ public class DungeonHallWay : DungeonRoom
                         break;
 
                 }
-                creator.SpawnDungeonPart(roomToSpawn, wantedDoorDirection, gameObject, availableDoors[i].transform);
+                creator.SpawnDungeonPartAlt(roomToSpawn, wantedDoorDirection, gameObject, availableDoors[i].transform);
             }
         }
         else

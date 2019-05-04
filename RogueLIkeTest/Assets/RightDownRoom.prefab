@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3746228521799701166}
   - component: {fileID: 2354037004451035498}
   - component: {fileID: 6646829210518586974}
-  m_Layer: 4
+  m_Layer: 0
   m_Name: RightDownRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 463378179310209854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 140.6139, y: 167.93558, z: 176.08234}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6447011077838786139}
@@ -70,6 +70,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -94,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6844f2bd25e2d1f448ea4b9821b44e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentDoor: {fileID: 0}
+  parentRoom: {fileID: 0}
   replaced: 0
   previousReplaced: 0
   creator: {fileID: 0}
@@ -103,6 +104,7 @@ MonoBehaviour:
   - {fileID: 3062560169564087852}
   entranceDoor: {fileID: 0}
   type: 0
+  possibleDoorLocations: []
 --- !u!65 &2354037004451035498
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -114,7 +116,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9.97, y: 2.220446e-16, z: 9.97}
+  m_Size: {x: 9.97, y: 2, z: 9.97}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6646829210518586974
 Rigidbody:
@@ -198,6 +200,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -223,8 +226,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerRoom: {fileID: 3746228521799701166}
-  childRoom: {fileID: 0}
+  parentDoor: {fileID: 0}
   direction: 2
+  id: 1
 --- !u!1 &5756706461282383096
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,6 +295,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -316,5 +321,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerRoom: {fileID: 3746228521799701166}
-  childRoom: {fileID: 0}
+  parentDoor: {fileID: 0}
   direction: 1
+  id: 0

@@ -7,6 +7,7 @@ public class DungeonDoor : MonoBehaviour
     public DungeonRoom ownerRoom;
     public GameObject parentDoor;
     public DoorDirection direction;
+    public int id;
 
 
     public enum DoorDirection {Left, Down, Right, Up }

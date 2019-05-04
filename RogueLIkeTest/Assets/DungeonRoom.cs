@@ -6,7 +6,7 @@ using UnityEditor;
 [ExecuteInEditMode]
 public class DungeonRoom : MonoBehaviour
 {
-    public GameObject parentDoor;
+    public GameObject parentRoom;
     public bool replaced;
     public bool previousReplaced;
 
@@ -22,8 +22,9 @@ public class DungeonRoom : MonoBehaviour
     {
 
     }
-    public void Initialize(DungeonCreator owner, GameObject entrance = null)
+    public void Initialize(DungeonCreator owner, GameObject parentRoom_ = null, GameObject entrance = null)
     {
+        parentRoom = parentRoom_;
         creator = owner;
         if (entrance)
         {
@@ -39,7 +40,7 @@ public class DungeonRoom : MonoBehaviour
     {
         creator.roomCount++;
         creator.openProcesses++;
-        yield return new WaitForSeconds(0.5f);
+        yield return null;
         creator.openProcesses--;
         if(availableDoors.Count > 0)
         {
@@ -77,7 +78,7 @@ public class DungeonRoom : MonoBehaviour
                         }
                     }
                 }
-                creator.SpawnDungeonPart(availableHallways[Random.Range(0, availableHallways.Count)], wantedDoorDirection, gameObject, availableDoors[i].transform);
+                creator.SpawnDungeonPartAlt(availableHallways[Random.Range(0, availableHallways.Count)], wantedDoorDirection, gameObject, availableDoors[i].transform);
             }
         }
         else
@@ -88,7 +89,7 @@ public class DungeonRoom : MonoBehaviour
             }
         }
     }
-    public bool HasCollision()
+    public bool HasCollision(bool notIncludeThis = false)
     {
         Vector3 colliderHalfExtends = transform.GetComponent<BoxCollider>().size;
         colliderHalfExtends.x *= transform.lossyScale.x;
@@ -98,17 +99,28 @@ public class DungeonRoom : MonoBehaviour
         bool returnValue = Physics.CheckBox(transform.position, colliderHalfExtends, transform.rotation);
         if (returnValue)
         {
-            Collider[] hits = Physics.OverlapBox(transform.position, colliderHalfExtends, transform.rotation);
-            if(creator != null)
+            if (notIncludeThis)
             {
-                creator.hits = hits;
-            }
-            foreach(Collider col in hits)
-            {
-                print(gameObject + " HAS COLLIDED WITH " + col.gameObject);
+                Collider[] hits = Physics.OverlapBox(transform.position, colliderHalfExtends, transform.rotation);
+                if (creator != null)
+                {
+                    creator.hits = hits;
+                }
+                foreach (Collider col in hits)
+                {
+                    print(gameObject + " HAS COLLIDED WITH " + col.gameObject);
+                }
+                if(hits.Length >= 2)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
-        return returnValue;
+        return false;
     }
     public enum RoomTypes { Normal, End, Hallway}
 }

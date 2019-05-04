@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4007813121599246917}
   - component: {fileID: 2650616991939950977}
   - component: {fileID: 81104992072276697}
-  m_Layer: 4
+  m_Layer: 0
   m_Name: RightDownRoomStretched
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 148027031407266773}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.5046816, y: 108.95048, z: -11.947}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 2.269}
   m_Children:
   - {fileID: 6709158759535120048}
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6844f2bd25e2d1f448ea4b9821b44e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentDoor: {fileID: 0}
+  parentRoom: {fileID: 0}
   replaced: 0
   previousReplaced: 0
   creator: {fileID: 0}
@@ -104,6 +104,7 @@ MonoBehaviour:
   - {fileID: 3378750910493419207}
   entranceDoor: {fileID: 0}
   type: 0
+  possibleDoorLocations: []
 --- !u!65 &2650616991939950977
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -115,7 +116,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9.97, y: 2.220446e-16, z: 9.97}
+  m_Size: {x: 9.97, y: 2, z: 9.97}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &81104992072276697
 Rigidbody:
@@ -225,8 +226,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerRoom: {fileID: 4007813121599246917}
-  childRoom: {fileID: 0}
+  parentDoor: {fileID: 0}
   direction: 2
+  id: 1
 --- !u!1 &5440405747986002963
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,5 +321,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerRoom: {fileID: 4007813121599246917}
-  childRoom: {fileID: 0}
+  parentDoor: {fileID: 0}
   direction: 1
+  id: 0

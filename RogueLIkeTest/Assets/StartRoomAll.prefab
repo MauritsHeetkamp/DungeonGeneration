@@ -66,6 +66,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -91,8 +92,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerRoom: {fileID: 5062535999709671150}
-  childRoom: {fileID: 0}
+  parentDoor: {fileID: 0}
   direction: 3
+  id: 0
 --- !u!1 &1932854861332448894
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,6 +161,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -184,8 +187,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerRoom: {fileID: 5062535999709671150}
-  childRoom: {fileID: 0}
+  parentDoor: {fileID: 0}
   direction: 1
+  id: 1
 --- !u!1 &2679306833880538708
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,6 +256,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -277,8 +282,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerRoom: {fileID: 5062535999709671150}
-  childRoom: {fileID: 0}
+  parentDoor: {fileID: 0}
   direction: 0
+  id: 3
 --- !u!1 &5891858413010673463
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +299,7 @@ GameObject:
   - component: {fileID: 5062535999709671150}
   - component: {fileID: 8559815906879696689}
   - component: {fileID: 3207767373589588823}
-  m_Layer: 4
+  m_Layer: 0
   m_Name: StartRoomAll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,6 +357,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -375,7 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6844f2bd25e2d1f448ea4b9821b44e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentDoor: {fileID: 0}
+  parentRoom: {fileID: 0}
   replaced: 0
   previousReplaced: 0
   creator: {fileID: 0}
@@ -386,6 +393,7 @@ MonoBehaviour:
   - {fileID: 2679306833880538708}
   entranceDoor: {fileID: 0}
   type: 0
+  possibleDoorLocations: []
 --- !u!65 &8559815906879696689
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -395,9 +403,9 @@ BoxCollider:
   m_GameObject: {fileID: 5891858413010673463}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 9.97, y: 2.220446e-16, z: 9.97}
+  m_Size: {x: 9.97, y: 2, z: 9.97}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3207767373589588823
 Rigidbody:
@@ -481,6 +489,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -506,5 +515,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerRoom: {fileID: 5062535999709671150}
-  childRoom: {fileID: 0}
+  parentDoor: {fileID: 0}
   direction: 2
+  id: 2
