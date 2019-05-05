@@ -16,11 +16,11 @@ public class Test : MonoBehaviour
 
     public void SpawnDungeonPart(GameObject roomToSpawn)
     {
-        GameObject spawnedRoom = Instantiate(roomToSpawn, Vector3.zero, Quaternion.identity);
+        /*GameObject spawnedRoom = Instantiate(roomToSpawn, Vector3.zero, Quaternion.identity);
         spawnedRoom.GetComponent<DungeonRoom>().Initialize(DG);
         DG.SpawnDungeonPartAlt(part, DungeonDoor.DoorDirection.Down, spawnedRoom, spawnedRoom.GetComponent<DungeonRoom>().availableDoors[0].transform);
         spawnedRoom.GetComponent<DungeonRoom>().Initialize(DG);
-        DG.SpawnDungeonPartAlt(part, DungeonDoor.DoorDirection.Down, spawnedRoom, spawnedRoom.GetComponent<DungeonRoom>().availableDoors[0].transform);
+        DG.SpawnDungeonPartAlt(part, DungeonDoor.DoorDirection.Down, spawnedRoom, spawnedRoom.GetComponent<DungeonRoom>().availableDoors[0].transform);*/
     }
     public void Hi(GameObject room)
     {

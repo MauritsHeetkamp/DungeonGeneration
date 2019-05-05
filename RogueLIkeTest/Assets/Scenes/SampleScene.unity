@@ -341,48 +341,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hits: []
   dungeons: 0
-  minRooms: 20
-  maxRooms: 50
-  shopRooms: 0
-  bossRooms: 0
+  minRoomCount: 20
+  maxRoomCount: 30
+  maxShopRoomCount: 1
+  maxBossRoomCount: 0
   removePreviousDungeon: 1
   walls:
   - {fileID: 4410634415492265739, guid: 64ddf57c1116fc44faf087b3c4905271, type: 3}
   doors: []
   startRooms:
   - {fileID: 5891858413010673463, guid: ef6b9471a937cae449b3247e17c8bfc6, type: 3}
-  leftRooms:
+  rooms:
+  - {fileID: 5732670273801590920, guid: 8b3beb95f22b8504dbcb949839428920, type: 3}
   - {fileID: 5571656939198026873, guid: 6de640d6bfd886a4d8724b4b67eb2ab2, type: 3}
+  - {fileID: 7615944803242056397, guid: 0013f26a8853f7241b8c7d608c575ed6, type: 3}
   - {fileID: 2002037697582845165, guid: 6abaa1f4b7bb03941bc9a05fcd2c65c6, type: 3}
   - {fileID: 2002037697582845165, guid: 985921601bf909742bda592a0a4770b6, type: 3}
   - {fileID: 8351581659204503673, guid: b4a0bcf67fef2814581c5fda89b20ff4, type: 3}
-  - {fileID: 7615944803242056397, guid: 0013f26a8853f7241b8c7d608c575ed6, type: 3}
-  rightRooms:
   - {fileID: 463378179310209854, guid: 552d9cefdaa8d1e48a0b58d53873cd4d, type: 3}
-  - {fileID: 2002037697582845165, guid: 1afbae17e3c650e488e3efd28a8898d9, type: 3}
-  - {fileID: 396176103741790588, guid: ca60b41983b15a24083baeb151bedfae, type: 3}
-  - {fileID: 2002037697582845165, guid: 985921601bf909742bda592a0a4770b6, type: 3}
   - {fileID: 148027031407266773, guid: 901406899276a9f4789bf9d5b7c693f5, type: 3}
-  upRooms:
-  - {fileID: 8351581659204503673, guid: b4a0bcf67fef2814581c5fda89b20ff4, type: 3}
+  - {fileID: 2002037697582845165, guid: 1afbae17e3c650e488e3efd28a8898d9, type: 3}
   - {fileID: 396176103741790588, guid: ca60b41983b15a24083baeb151bedfae, type: 3}
   - {fileID: 8646978982062712414, guid: 35271cc228f9cf8459a201f48a33b411, type: 3}
   - {fileID: 2002037697582845165, guid: b189b801e5ac61542a6b4e07911e2988, type: 3}
-  downRooms:
-  - {fileID: 5732670273801590920, guid: 8b3beb95f22b8504dbcb949839428920, type: 3}
-  - {fileID: 5571656939198026873, guid: 6de640d6bfd886a4d8724b4b67eb2ab2, type: 3}
-  - {fileID: 463378179310209854, guid: 552d9cefdaa8d1e48a0b58d53873cd4d, type: 3}
-  - {fileID: 8646978982062712414, guid: 35271cc228f9cf8459a201f48a33b411, type: 3}
-  - {fileID: 7615944803242056397, guid: 0013f26a8853f7241b8c7d608c575ed6, type: 3}
-  - {fileID: 148027031407266773, guid: 901406899276a9f4789bf9d5b7c693f5, type: 3}
   hallways:
   - {fileID: 2351870015619051694, guid: 1ad38fd56de988d4981b555e5434a08c, type: 3}
   - {fileID: 6518503444331407997, guid: 0571692009c795b4a80b564730b89e63, type: 3}
+  bossRooms:
+  - {fileID: 1535321985838003864, guid: b7c06c4392baf8044827b1b742e98378, type: 3}
+  - {fileID: 1859399245925264012, guid: 777abcfa0df76de4991c5ad203bddbb4, type: 3}
+  - {fileID: 8907935778447247533, guid: 32310bcbc67f847489d755fb01bdaa4c, type: 3}
+  - {fileID: 8027685580270800839, guid: d41e7050d7a4ef84a801f1ee60f5ba65, type: 3}
+  shopRooms:
+  - {fileID: 6331898394665324621, guid: ed3de576f80b7554984807063bb22620, type: 3}
+  - {fileID: 7171673703314512752, guid: 8bfca09dd7de2204ea869092bd39b9dc, type: 3}
+  - {fileID: 3291782028251552325, guid: 112faed74a5ec1f4e8531b36809744fd, type: 3}
+  - {fileID: 6088087620079311118, guid: 834c810e7c6b1384f8c706de44f733ef, type: 3}
+  eventRooms: []
   roomLayer:
     serializedVersion: 2
     m_Bits: 16
   openProcesses: 0
   roomCount: 0
+  shopCount: 0
+  shopChance: 90
+  eventRoomChance: 0
   endRooms: []
   entireDungeon: []
   ogRoom: {fileID: 0}

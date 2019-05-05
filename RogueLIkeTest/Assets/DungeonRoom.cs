@@ -65,27 +65,14 @@ public class DungeonRoom : MonoBehaviour
                         wantedDoorDirection = DungeonDoor.DoorDirection.Left;
                         break;
                 }
-
-                List<GameObject> availableHallways = new List<GameObject>();
-                foreach (GameObject hallway in creator.hallways)
-                {
-                    foreach (GameObject door in hallway.GetComponent<DungeonRoom>().availableDoors)
-                    {
-                        if (door.GetComponent<DungeonDoor>().direction == wantedDoorDirection)
-                        {
-                            availableHallways.Add(hallway);
-                            break;
-                        }
-                    }
-                }
-                creator.SpawnDungeonPartAlt(availableHallways[Random.Range(0, availableHallways.Count)], wantedDoorDirection, gameObject, availableDoors[i].transform);
+                creator.SpawnDungeonPartAlt(creator.hallways, wantedDoorDirection, gameObject, availableDoors[i].transform);
             }
         }
         else
         {
             if(creator.openProcesses <= 0)
             {
-                StartCoroutine(creator.CheckRoomCount());
+                creator.CheckRoomCount();
             }
         }
     }
@@ -106,12 +93,12 @@ public class DungeonRoom : MonoBehaviour
                 {
                     creator.hits = hits;
                 }
-                foreach (Collider col in hits)
-                {
-                    print(gameObject + " HAS COLLIDED WITH " + col.gameObject);
-                }
                 if(hits.Length >= 2)
                 {
+                    foreach (Collider col in hits)
+                    {
+                        print(gameObject + " HAS COLLIDED WITH " + col.gameObject);
+                    }
                     return true;
                 }
                 else
@@ -122,5 +109,5 @@ public class DungeonRoom : MonoBehaviour
         }
         return false;
     }
-    public enum RoomTypes { Normal, End, Hallway}
+    public enum RoomTypes { Normal, End, Hallway, Shop, Event}
 }

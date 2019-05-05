@@ -34,34 +34,14 @@ public class DungeonHallWay : DungeonRoom
                         break;
                 }
 
-                GameObject roomToSpawn = null;
-                switch (wantedDoorDirection)
-                {
-                    case DungeonDoor.DoorDirection.Up:
-                        roomToSpawn = creator.upRooms[Random.Range(0, creator.upRooms.Count)];
-                        break;
-
-                    case DungeonDoor.DoorDirection.Down:
-                        roomToSpawn = creator.downRooms[Random.Range(0, creator.downRooms.Count)];
-                        break;
-
-                    case DungeonDoor.DoorDirection.Left:
-                        roomToSpawn = creator.leftRooms[Random.Range(0, creator.leftRooms.Count)];
-                        break;
-
-                    case DungeonDoor.DoorDirection.Right:
-                        roomToSpawn = creator.rightRooms[Random.Range(0, creator.rightRooms.Count)];
-                        break;
-
-                }
-                creator.SpawnDungeonPartAlt(roomToSpawn, wantedDoorDirection, gameObject, availableDoors[i].transform);
+                creator.SpawnDungeonPartAlt(creator.rooms, wantedDoorDirection, gameObject, availableDoors[i].transform);
             }
         }
         else
         {
             if (creator.openProcesses <= 0)
             {
-                StartCoroutine(creator.CheckRoomCount());
+                creator.CheckRoomCount();
             }
         }
     }
