@@ -7,13 +7,14 @@ public class DungeonHallWay : DungeonRoom
     public override IEnumerator SpawnNextRoom()
     {
         print(" Spawned " + gameObject);
-        creator.openProcesses++;
+        creator.openProcesses += availableDoors.Count;
         yield return null;
-        creator.openProcesses--;
+        int backupCount = availableDoors.Count;
         if (availableDoors.Count > 0)
         {
-            for (int i = 0; i < availableDoors.Count; i++)
+            for (int i = backupCount - 1; i >= 0; i--)
             {
+                creator.openProcesses--;
                 DungeonDoor.DoorDirection wantedDoorDirection = DungeonDoor.DoorDirection.Left;
                 switch (availableDoors[i].GetComponent<DungeonDoor>().direction)
                 {
