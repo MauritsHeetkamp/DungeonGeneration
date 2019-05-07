@@ -434,11 +434,15 @@ public class DungeonCreator : MonoBehaviour
         }
         else
         {
-            //GenerateDungeon();
+            StartCoroutine(RestartWait(1.5f));
         }
     }
 
-
+    public IEnumerator RestartWait(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        GenerateDungeon();
+    }
 
     public Transform AddRandomDoorToRoom(GameObject roomToAddTo, DungeonDoor.DoorDirection requiredDirection)
     {
