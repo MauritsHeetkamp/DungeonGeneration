@@ -39,7 +39,14 @@ public class DungeonRoom : MonoBehaviour
     public virtual IEnumerator SpawnNextRoom()
     {
         creator.roomCount++;
-        creator.openProcesses += availableDoors.Count;
+        if(availableDoors.Count > 0)
+        {
+            creator.openProcesses += availableDoors.Count;
+        }
+        else
+        {
+            creator.openProcesses++;
+        }
         yield return null;
         int backupCount = availableDoors.Count;
         if(availableDoors.Count > 0)
@@ -71,7 +78,8 @@ public class DungeonRoom : MonoBehaviour
         }
         else
         {
-            if(creator.openProcesses <= 0)
+            creator.openProcesses--;
+            if(creator.openProcesses == 0)
             {
                 creator.CheckRoomCount();
             }

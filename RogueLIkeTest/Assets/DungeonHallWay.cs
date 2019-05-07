@@ -40,7 +40,7 @@ public class DungeonHallWay : DungeonRoom
         }
         else
         {
-            if (creator.openProcesses <= 0)
+            if (creator.openProcesses == 0)
             {
                 creator.CheckRoomCount();
             }

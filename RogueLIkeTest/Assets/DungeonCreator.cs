@@ -152,6 +152,7 @@ public class DungeonCreator : MonoBehaviour
         }
         else
         {
+            RemoveDoor(doorPoint.gameObject);
             if(openProcesses == 0)
             {
                 CheckRoomCount();
@@ -179,6 +180,7 @@ public class DungeonCreator : MonoBehaviour
         }
         else
         {
+            print("MKAYYYY");
             ForcedReplaceRoom(endRooms, bossRooms);
         }
     }
@@ -201,6 +203,13 @@ public class DungeonCreator : MonoBehaviour
     }
     public void RemoveDoor(GameObject doorToRemove)
     {
+        if (doorToRemove.transform.parent.GetComponent<DungeonRoom>().type == DungeonRoom.RoomTypes.Hallway)
+        {
+            GameObject hallway = doorToRemove.transform.parent.gameObject;
+            entireDungeon.Remove(hallway);
+            doorToRemove = hallway.GetComponent<DungeonRoom>().entranceDoor.GetComponent<DungeonDoor>().parentDoor;
+            DestroyImmediate(hallway);
+        }
         GameObject newWall = Instantiate(walls[Random.Range(0, walls.Length)], doorToRemove.transform.position, doorToRemove.transform.rotation, doorToRemove.transform.parent);
         doorToRemove.GetComponent<DungeonDoor>().ownerRoom.availableDoors.Remove(doorToRemove);
         if(doorToRemove.GetComponent<DungeonDoor>().ownerRoom.availableDoors.Count <= 0)
@@ -398,6 +407,9 @@ public class DungeonCreator : MonoBehaviour
                 }
                 else
                 {
+                    endRooms.Remove(roomToReplace);
+                    entireDungeon.Remove(roomToReplace);
+                    DestroyImmediate(roomToReplace);
                     //print("THIS ONE DID NOT COLLIDE C:");
                     break;
                 }
