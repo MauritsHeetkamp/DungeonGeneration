@@ -307,9 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccdb7b686db48db4083d5d3fb0c4fe27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start: {fileID: 5891858413010673463, guid: ef6b9471a937cae449b3247e17c8bfc6, type: 3}
-  part: {fileID: 5732670273801590920, guid: 8b3beb95f22b8504dbcb949839428920, type: 3}
-  DG: {fileID: 1995347974}
+  sortArray: 0500000003000000080000000600000002000000090000000a000000040000000700000001000000
 --- !u!1 &1995347973
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,12 +337,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b6c87f19c2c86479601164f4f4b7b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hits: []
+  distanceRoomStack:
+    stack:
+    - thisObject: {fileID: 0}
+      distanceFromReferencePoint: 0
+    - thisObject: {fileID: 0}
+      distanceFromReferencePoint: 0
+    - thisObject: {fileID: 0}
+      distanceFromReferencePoint: 0
+    - thisObject: {fileID: 0}
+      distanceFromReferencePoint: 0
+    - thisObject: {fileID: 0}
+      distanceFromReferencePoint: 0
+    - thisObject: {fileID: 0}
+      distanceFromReferencePoint: 0
+    - thisObject: {fileID: 0}
+      distanceFromReferencePoint: 0
+    - thisObject: {fileID: 0}
+      distanceFromReferencePoint: 0
+    - thisObject: {fileID: 0}
+      distanceFromReferencePoint: 0
+    - thisObject: {fileID: 0}
+      distanceFromReferencePoint: 0
+  startRoom: {fileID: 0}
   dungeons: 0
   minRoomCount: 20
   maxRoomCount: 30
   maxShopRoomCount: 1
-  maxBossRoomCount: 0
+  maxBossRoomCount: 1
+  minBossRoomDistance: 0
   removePreviousDungeon: 1
   walls:
   - {fileID: 4410634415492265739, guid: 64ddf57c1116fc44faf087b3c4905271, type: 3}
@@ -388,8 +409,10 @@ MonoBehaviour:
   openProcesses: 0
   roomCount: 0
   shopCount: 0
+  bossCount: 0
   shopChance: 90
   eventRoomChance: 0
+  bossRoomChance: 90
   endRooms: []
   entireDungeon: []
   ogRoom: {fileID: 0}

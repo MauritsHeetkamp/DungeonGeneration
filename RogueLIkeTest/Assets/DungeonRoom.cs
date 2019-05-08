@@ -6,6 +6,7 @@ using UnityEditor;
 [ExecuteInEditMode]
 public class DungeonRoom : MonoBehaviour
 {
+    public int roomDistanceFromStart;
     public GameObject parentRoom;
     public bool replaced;
     public bool previousReplaced;
@@ -24,8 +25,16 @@ public class DungeonRoom : MonoBehaviour
     }
     public void Initialize(DungeonCreator owner, GameObject parentRoom_ = null, GameObject entrance = null)
     {
-        parentRoom = parentRoom_;
         creator = owner;
+        if(parentRoom_ != null)
+        {
+            parentRoom = parentRoom_;
+            roomDistanceFromStart = parentRoom.GetComponent<DungeonRoom>().roomDistanceFromStart;
+            if(type != RoomTypes.Hallway)
+            {
+                roomDistanceFromStart++;
+            }
+        }
         if (entrance)
         {
             entranceDoor = entrance;
@@ -98,10 +107,6 @@ public class DungeonRoom : MonoBehaviour
             if (notIncludeThis)
             {
                 Collider[] hits = Physics.OverlapBox(transform.position, colliderHalfExtends, transform.rotation);
-                if (creator != null)
-                {
-                    creator.hits = hits;
-                }
                 if(hits.Length >= 2)
                 {
                     foreach (Collider col in hits)
