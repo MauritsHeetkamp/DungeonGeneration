@@ -302,12 +302,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccdb7b686db48db4083d5d3fb0c4fe27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortArray: 0500000003000000080000000600000002000000090000000a000000040000000700000001000000
+  yes: {fileID: 6335512239379280548, guid: bb9fd41388ff5bd4298d0bb69ab949a9, type: 3}
 --- !u!1 &1995347973
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,7 +363,8 @@ MonoBehaviour:
   dungeons: 0
   minRoomCount: 20
   maxRoomCount: 30
-  maxShopRoomCount: 1
+  minShopRoomCount: 1
+  minTreasureRoomCount: 1
   maxBossRoomCount: 1
   minBossRoomDistance: 0
   removePreviousDungeon: 1
@@ -404,6 +405,17 @@ MonoBehaviour:
   - {fileID: 7171673703314512752, guid: 8bfca09dd7de2204ea869092bd39b9dc, type: 3}
   - {fileID: 3291782028251552325, guid: 112faed74a5ec1f4e8531b36809744fd, type: 3}
   - {fileID: 6088087620079311118, guid: 834c810e7c6b1384f8c706de44f733ef, type: 3}
+  treasureRooms:
+  - {fileID: 8568546176644365950, guid: 784d74a30249e7d44b312048e1e0b312, type: 3}
+  - {fileID: 5814843809376395834, guid: 345febbaa583e714dbffaabee9c66b65, type: 3}
+  - {fileID: 4320563354562131041, guid: 97d4e4dcfba8eed4ab83aa9712d2077b, type: 3}
+  - {fileID: 3165182674517864432, guid: 7270594fd2c18fb4780ba9a56119a7ed, type: 3}
+  - {fileID: 4614076062208425640, guid: 0481a9f4807715149a714ed28160cf31, type: 3}
+  - {fileID: 951717287186953006, guid: 566cf04db60238b48953258850ef1fe4, type: 3}
+  - {fileID: 3677288385944790972, guid: a8021516fa410a84b8514889d34b7499, type: 3}
+  - {fileID: 1673969474097739101, guid: b3974978f08e4e64f9c4d40fda955485, type: 3}
+  - {fileID: 1676066592009458674, guid: a12c1ef64f492c44dba9557e38876a4a, type: 3}
+  - {fileID: 5946379301691174510, guid: daf75ecd68b7c2444ab24b99c9132ccf, type: 3}
   eventRooms: []
   roomLayer:
     serializedVersion: 2
@@ -412,9 +424,11 @@ MonoBehaviour:
   roomCount: 0
   shopCount: 0
   bossCount: 0
-  shopChance: 90
+  treasureCount: 0
+  shopChance: 1
   eventRoomChance: 0
-  bossRoomChance: 90
+  bossRoomChance: 1
+  treasureRoomChance: 5
   endRooms: []
   entireDungeon: []
   ogRoom: {fileID: 0}
