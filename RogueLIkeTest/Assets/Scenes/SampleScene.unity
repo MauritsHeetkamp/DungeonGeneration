@@ -365,8 +365,10 @@ MonoBehaviour:
   maxRoomCount: 30
   minShopRoomCount: 1
   minTreasureRoomCount: 1
-  maxBossRoomCount: 1
-  minBossRoomDistance: 0
+  minBossRoomCount: 1
+  minBossRoomDistance: 5
+  maxEventRoomCount: 5
+  maxEventRoomPerFloor: 1
   removePreviousDungeon: 1
   walls:
   - {fileID: 4410634415492265739, guid: 64ddf57c1116fc44faf087b3c4905271, type: 3}
@@ -416,7 +418,9 @@ MonoBehaviour:
   - {fileID: 1673969474097739101, guid: b3974978f08e4e64f9c4d40fda955485, type: 3}
   - {fileID: 1676066592009458674, guid: a12c1ef64f492c44dba9557e38876a4a, type: 3}
   - {fileID: 5946379301691174510, guid: daf75ecd68b7c2444ab24b99c9132ccf, type: 3}
-  eventRooms: []
+  eventRooms:
+  - {fileID: 7966250085700987770, guid: 1fa2ee0a0ebd1ca429ca0968ca41006b, type: 3}
+  - {fileID: 8182282708585963740, guid: 6e0c5899df6c1964ebe65289cdb53204, type: 3}
   roomLayer:
     serializedVersion: 2
     m_Bits: 16
@@ -425,8 +429,9 @@ MonoBehaviour:
   shopCount: 0
   bossCount: 0
   treasureCount: 0
+  eventRoomsThisFloor: 0
   shopChance: 1
-  eventRoomChance: 0
+  eventRoomChance: 90
   bossRoomChance: 1
   treasureRoomChance: 5
   endRooms: []

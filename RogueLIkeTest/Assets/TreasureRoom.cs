@@ -11,7 +11,7 @@ public class TreasureRoom : BaseRoom
     }
     public override void SpawnRoom(DungeonDoor.DoorDirection wantedDir, Transform doorPoint)
     {
-        creator.SpawnDungeonPartAlt(creator.hallways, wantedDir, gameObject, doorPoint);
+        creator.SpawnDungeonPartAlt(creator.hallways, wantedDir, gameObject, doorPoint, RoomTypes.Hallway);
     }
     public override void OnDestroyed()
     {
