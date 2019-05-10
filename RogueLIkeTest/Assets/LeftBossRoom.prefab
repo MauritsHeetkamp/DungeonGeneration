@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 8136973612134273483}
   - component: {fileID: 5837712262628227411}
   - component: {fileID: 2748305984106154903}
-  - component: {fileID: 6213989498601834201}
   - component: {fileID: 87636675638347967}
   - component: {fileID: 903444520552753389}
-  m_Layer: 0
+  - component: {fileID: 554915878019739646}
+  m_Layer: 4
   m_Name: LeftBossRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,27 +82,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &6213989498601834201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1859399245925264012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6844f2bd25e2d1f448ea4b9821b44e87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentRoom: {fileID: 0}
-  replaced: 0
-  previousReplaced: 0
-  creator: {fileID: 0}
-  availableDoors:
-  - {fileID: 2602722934258595806}
-  entranceDoor: {fileID: 0}
-  type: 0
-  possibleDoorLocations: []
 --- !u!65 &87636675638347967
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -132,6 +111,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &554915878019739646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859399245925264012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 696c714e4837dd8468ef9de7307363fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomDistanceFromStart: 0
+  parentRoom: {fileID: 0}
+  replaced: 0
+  previousReplaced: 0
+  creator: {fileID: 0}
+  availableDoors:
+  - {fileID: 2602722934258595806}
+  entranceDoor: {fileID: 0}
+  type: 5
 --- !u!1 &2602722934258595806
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6780ef114d5f1442a9f24badc9624e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerRoom: {fileID: 6213989498601834201}
+  ownerRoom: {fileID: 0}
   parentDoor: {fileID: 0}
   direction: 0
   id: 0

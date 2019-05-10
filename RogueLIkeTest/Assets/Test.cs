@@ -4,34 +4,12 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-    public int[] sortArray;
+    public GameObject yes;
 
     // Update is called once per frame
-    void Update()
+    public void Start()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Sort();
-        }
-    }
-    public void Sort()
-    {
-        bool swapped = false;
-        int currentToCheck = 0;
-        while (currentToCheck < sortArray.Length - 1)
-        {
-            if (sortArray[currentToCheck] > sortArray[currentToCheck + 1])
-            {
-                int backupStackObject = sortArray[currentToCheck + 1];
-                sortArray[currentToCheck + 1] = sortArray[currentToCheck];
-                sortArray[currentToCheck] = backupStackObject;
-                swapped = true;
-            }
-            currentToCheck++;
-        }
-        if (swapped)
-        {
-            Sort();
-        }
+        GameObject neww = Instantiate(yes);
+        print(Physics.OverlapBox(neww.transform.position, neww.GetComponent<BoxCollider>().size / 2, neww.transform.rotation).Length);
     }
 }

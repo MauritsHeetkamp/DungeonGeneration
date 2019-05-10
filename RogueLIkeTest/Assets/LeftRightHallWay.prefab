@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6780ef114d5f1442a9f24badc9624e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerRoom: {fileID: 5440948703356377047}
+  ownerRoom: {fileID: 0}
   parentDoor: {fileID: 0}
   direction: 2
   id: 0
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6780ef114d5f1442a9f24badc9624e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerRoom: {fileID: 5440948703356377047}
+  ownerRoom: {fileID: 0}
   parentDoor: {fileID: 0}
   direction: 1
   id: 3
@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6780ef114d5f1442a9f24badc9624e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerRoom: {fileID: 5440948703356377047}
+  ownerRoom: {fileID: 0}
   parentDoor: {fileID: 0}
   direction: 3
   id: 2
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 5440948703356377047}
   - component: {fileID: 461199501722632954}
   - component: {fileID: 1851360708518246143}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: LeftRightHallWay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,9 +392,6 @@ MonoBehaviour:
   - {fileID: 7579088305795420008}
   entranceDoor: {fileID: 0}
   type: 2
-  possibleDoorLocations:
-  - {fileID: 785419711464410634}
-  - {fileID: 414182358704877910}
 --- !u!65 &461199501722632954
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -515,7 +512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6780ef114d5f1442a9f24badc9624e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerRoom: {fileID: 5440948703356377047}
+  ownerRoom: {fileID: 0}
   parentDoor: {fileID: 0}
   direction: 0
   id: 1

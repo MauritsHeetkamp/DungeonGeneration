@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 5062535999709671150}
   - component: {fileID: 8559815906879696689}
   - component: {fileID: 3207767373589588823}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: StartRoomAll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,6 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6844f2bd25e2d1f448ea4b9821b44e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomDistanceFromStart: 0
   parentRoom: {fileID: 0}
   replaced: 0
   previousReplaced: 0
@@ -393,7 +394,6 @@ MonoBehaviour:
   - {fileID: 2679306833880538708}
   entranceDoor: {fileID: 0}
   type: 0
-  possibleDoorLocations: []
 --- !u!65 &8559815906879696689
 BoxCollider:
   m_ObjectHideFlags: 0

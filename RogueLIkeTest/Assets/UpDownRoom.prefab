@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 5717197654934495691}
   - component: {fileID: 2832134533510967669}
   - component: {fileID: 688725302882779105}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: UpDownRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -487,9 +487,6 @@ MonoBehaviour:
   - {fileID: 4064100564053139320}
   entranceDoor: {fileID: 0}
   type: 0
-  possibleDoorLocations:
-  - {fileID: 581840713321457515}
-  - {fileID: 7962728194536208178}
 --- !u!65 &2832134533510967669
 BoxCollider:
   m_ObjectHideFlags: 0

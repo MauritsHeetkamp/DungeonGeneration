@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6780ef114d5f1442a9f24badc9624e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerRoom: {fileID: 1201741995110804189}
+  ownerRoom: {fileID: 0}
   parentDoor: {fileID: 0}
   direction: 2
   id: 0
@@ -106,10 +106,10 @@ GameObject:
   - component: {fileID: 4569697347474345498}
   - component: {fileID: 7829269221215758787}
   - component: {fileID: 8388516191951966081}
-  - component: {fileID: 1201741995110804189}
   - component: {fileID: 78112800035225673}
   - component: {fileID: 8744674647606654966}
-  m_Layer: 0
+  - component: {fileID: 1559342485550058945}
+  m_Layer: 4
   m_Name: RightShopRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,31 +180,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &1201741995110804189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3291782028251552325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6844f2bd25e2d1f448ea4b9821b44e87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomDistanceFromStart: 0
-  parentRoom: {fileID: 0}
-  replaced: 0
-  previousReplaced: 0
-  creator: {fileID: 0}
-  availableDoors:
-  - {fileID: 1428916438185319765}
-  entranceDoor: {fileID: 0}
-  type: 0
-  possibleDoorLocations:
-  - {fileID: 3827799462610573414}
-  - {fileID: 5032480467726516097}
-  - {fileID: 5552237407514933060}
 --- !u!65 &78112800035225673
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -234,6 +209,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &1559342485550058945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3291782028251552325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdfc5813f785c4e41ae219c5e594af37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomDistanceFromStart: 0
+  parentRoom: {fileID: 0}
+  replaced: 0
+  previousReplaced: 0
+  creator: {fileID: 0}
+  availableDoors:
+  - {fileID: 1428916438185319765}
+  entranceDoor: {fileID: 0}
+  type: 3
 --- !u!1 &3827799462610573414
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6780ef114d5f1442a9f24badc9624e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerRoom: {fileID: 1201741995110804189}
+  ownerRoom: {fileID: 0}
   parentDoor: {fileID: 0}
   direction: 0
   id: 1
@@ -420,7 +416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6780ef114d5f1442a9f24badc9624e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerRoom: {fileID: 1201741995110804189}
+  ownerRoom: {fileID: 0}
   parentDoor: {fileID: 0}
   direction: 3
   id: 2
@@ -515,7 +511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6780ef114d5f1442a9f24badc9624e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerRoom: {fileID: 1201741995110804189}
+  ownerRoom: {fileID: 0}
   parentDoor: {fileID: 0}
   direction: 1
   id: 3

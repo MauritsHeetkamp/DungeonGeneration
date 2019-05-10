@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 4065865986847100792}
   - component: {fileID: 7949827066401448415}
   - component: {fileID: 568575222273271253}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: LeftRightRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,9 +202,6 @@ MonoBehaviour:
   - {fileID: 1614022452370515924}
   entranceDoor: {fileID: 0}
   type: 0
-  possibleDoorLocations:
-  - {fileID: 7587411632346126329}
-  - {fileID: 3602235045588600686}
 --- !u!65 &7949827066401448415
 BoxCollider:
   m_ObjectHideFlags: 0

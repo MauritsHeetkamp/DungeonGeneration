@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6780ef114d5f1442a9f24badc9624e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerRoom: {fileID: 7034127960222695695}
+  ownerRoom: {fileID: 0}
   parentDoor: {fileID: 0}
   direction: 1
   id: 0
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6780ef114d5f1442a9f24badc9624e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerRoom: {fileID: 7034127960222695695}
+  ownerRoom: {fileID: 0}
   parentDoor: {fileID: 0}
   direction: 0
   id: 3
@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6780ef114d5f1442a9f24badc9624e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerRoom: {fileID: 7034127960222695695}
+  ownerRoom: {fileID: 0}
   parentDoor: {fileID: 0}
   direction: 2
   id: 2
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 7034127960222695695}
   - component: {fileID: 8985639523041335337}
   - component: {fileID: 7162060175187995692}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: UpDownHallWay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,9 +392,6 @@ MonoBehaviour:
   - {fileID: 8910748510884508399}
   entranceDoor: {fileID: 0}
   type: 2
-  possibleDoorLocations:
-  - {fileID: 4911613632617204272}
-  - {fileID: 3636729218238930273}
 --- !u!65 &8985639523041335337
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -515,7 +512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6780ef114d5f1442a9f24badc9624e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerRoom: {fileID: 7034127960222695695}
+  ownerRoom: {fileID: 0}
   parentDoor: {fileID: 0}
   direction: 3
   id: 1

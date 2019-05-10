@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6780ef114d5f1442a9f24badc9624e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerRoom: {fileID: 3204179716528994085}
+  ownerRoom: {fileID: 0}
   parentDoor: {fileID: 0}
   direction: 2
   id: 1
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6780ef114d5f1442a9f24badc9624e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerRoom: {fileID: 3204179716528994085}
+  ownerRoom: {fileID: 0}
   parentDoor: {fileID: 0}
   direction: 3
   id: 2
@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6780ef114d5f1442a9f24badc9624e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerRoom: {fileID: 3204179716528994085}
+  ownerRoom: {fileID: 0}
   parentDoor: {fileID: 0}
   direction: 0
   id: 0
@@ -296,10 +296,10 @@ GameObject:
   - component: {fileID: 767679692150857783}
   - component: {fileID: 3118943543569598639}
   - component: {fileID: 6658852718379612779}
-  - component: {fileID: 3204179716528994085}
   - component: {fileID: 8898083621188614467}
   - component: {fileID: 8557579256614525201}
-  m_Layer: 0
+  - component: {fileID: 1414112979995928459}
+  m_Layer: 4
   m_Name: LeftShopRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,31 +370,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &3204179716528994085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7171673703314512752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6844f2bd25e2d1f448ea4b9821b44e87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomDistanceFromStart: 0
-  parentRoom: {fileID: 0}
-  replaced: 0
-  previousReplaced: 0
-  creator: {fileID: 0}
-  availableDoors:
-  - {fileID: 6797537431218128418}
-  entranceDoor: {fileID: 0}
-  type: 0
-  possibleDoorLocations:
-  - {fileID: 2322355016812578384}
-  - {fileID: 4294868653542455307}
-  - {fileID: 8811666788592702002}
 --- !u!65 &8898083621188614467
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -424,6 +399,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &1414112979995928459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171673703314512752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdfc5813f785c4e41ae219c5e594af37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomDistanceFromStart: 0
+  parentRoom: {fileID: 0}
+  replaced: 0
+  previousReplaced: 0
+  creator: {fileID: 0}
+  availableDoors:
+  - {fileID: 6797537431218128418}
+  entranceDoor: {fileID: 0}
+  type: 3
 --- !u!1 &8811666788592702002
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6780ef114d5f1442a9f24badc9624e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerRoom: {fileID: 3204179716528994085}
+  ownerRoom: {fileID: 0}
   parentDoor: {fileID: 0}
   direction: 1
   id: 3

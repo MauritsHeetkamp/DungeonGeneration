@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6780ef114d5f1442a9f24badc9624e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerRoom: {fileID: 929189825784497956}
+  ownerRoom: {fileID: 0}
   parentDoor: {fileID: 0}
   direction: 2
   id: 2
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6780ef114d5f1442a9f24badc9624e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerRoom: {fileID: 929189825784497956}
+  ownerRoom: {fileID: 0}
   parentDoor: {fileID: 0}
   direction: 0
   id: 3
@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6780ef114d5f1442a9f24badc9624e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerRoom: {fileID: 929189825784497956}
+  ownerRoom: {fileID: 0}
   parentDoor: {fileID: 0}
   direction: 3
   id: 0
@@ -296,10 +296,10 @@ GameObject:
   - component: {fileID: 3749880119078459999}
   - component: {fileID: 208124958434807415}
   - component: {fileID: 7929376499203541014}
-  - component: {fileID: 929189825784497956}
   - component: {fileID: 1051372306225765238}
   - component: {fileID: 7110095615119272668}
-  m_Layer: 0
+  - component: {fileID: 6275046566835158989}
+  m_Layer: 4
   m_Name: UpShopRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,31 +370,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &929189825784497956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6088087620079311118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6844f2bd25e2d1f448ea4b9821b44e87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomDistanceFromStart: 0
-  parentRoom: {fileID: 0}
-  replaced: 0
-  previousReplaced: 0
-  creator: {fileID: 0}
-  availableDoors:
-  - {fileID: 3878453019253291807}
-  entranceDoor: {fileID: 0}
-  type: 0
-  possibleDoorLocations:
-  - {fileID: 7594053188085475250}
-  - {fileID: 2934608557404074967}
-  - {fileID: 3509293851251112198}
 --- !u!65 &1051372306225765238
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -424,6 +399,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &6275046566835158989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6088087620079311118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdfc5813f785c4e41ae219c5e594af37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomDistanceFromStart: 0
+  parentRoom: {fileID: 0}
+  replaced: 0
+  previousReplaced: 0
+  creator: {fileID: 0}
+  availableDoors:
+  - {fileID: 3878453019253291807}
+  entranceDoor: {fileID: 0}
+  type: 3
 --- !u!1 &7594053188085475250
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6780ef114d5f1442a9f24badc9624e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerRoom: {fileID: 929189825784497956}
+  ownerRoom: {fileID: 0}
   parentDoor: {fileID: 0}
   direction: 1
   id: 1

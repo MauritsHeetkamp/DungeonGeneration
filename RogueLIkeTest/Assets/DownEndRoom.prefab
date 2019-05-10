@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 8799453387631329560}
   - component: {fileID: 7587315145332550364}
   - component: {fileID: 8546801495296138969}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: DownEndRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -296,7 +296,6 @@ MonoBehaviour:
   - {fileID: 433287591198975822}
   entranceDoor: {fileID: 0}
   type: 1
-  possibleDoorLocations: []
 --- !u!65 &7587315145332550364
 BoxCollider:
   m_ObjectHideFlags: 0

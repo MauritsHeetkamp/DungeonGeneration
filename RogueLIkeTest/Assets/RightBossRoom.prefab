@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6780ef114d5f1442a9f24badc9624e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerRoom: {fileID: 3778017753617523960}
+  ownerRoom: {fileID: 0}
   parentDoor: {fileID: 0}
   direction: 2
   id: 0
@@ -106,10 +106,10 @@ GameObject:
   - component: {fileID: 1350771768610780138}
   - component: {fileID: 3697747730940287858}
   - component: {fileID: 4931793559942343094}
-  - component: {fileID: 3778017753617523960}
   - component: {fileID: 7162386626254875294}
   - component: {fileID: 7988013165797935820}
-  m_Layer: 0
+  - component: {fileID: 2367762363136767930}
+  m_Layer: 4
   m_Name: RightBossRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,27 +177,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &3778017753617523960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8907935778447247533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6844f2bd25e2d1f448ea4b9821b44e87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentRoom: {fileID: 0}
-  replaced: 0
-  previousReplaced: 0
-  creator: {fileID: 0}
-  availableDoors:
-  - {fileID: 5065435912287589887}
-  entranceDoor: {fileID: 0}
-  type: 0
-  possibleDoorLocations: []
 --- !u!65 &7162386626254875294
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -227,3 +206,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &2367762363136767930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8907935778447247533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 696c714e4837dd8468ef9de7307363fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomDistanceFromStart: 0
+  parentRoom: {fileID: 0}
+  replaced: 0
+  previousReplaced: 0
+  creator: {fileID: 0}
+  availableDoors:
+  - {fileID: 5065435912287589887}
+  entranceDoor: {fileID: 0}
+  type: 5
